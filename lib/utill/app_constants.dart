@@ -14,6 +14,7 @@ class AppConstants {
   static const String RECORD_LOCATION_URI = '/api/v1/delivery-man/record-location-data';
   static const String UPDATE_ORDER_STATUS_URI = '/api/v1/delivery-man/update-order-status';
   static const String UPDATE_PAYMENT_STATUS_URI = '/api/v1/delivery-man/update-payment-status';
+  static const String PAYOUT_URI = '/api/v1/delivery-man/payout';
   static const String TOKEN_URI = '/api/v1/delivery-man/update-fcm-token';
 
   // Shared Key

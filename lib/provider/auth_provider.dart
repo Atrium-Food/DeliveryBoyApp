@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:resturant_delivery_boy/data/model/response/base/api_response.dart';
 import 'package:resturant_delivery_boy/data/model/response/base/error_response.dart';
@@ -72,6 +75,9 @@ class AuthProvider with ChangeNotifier {
 
   bool get isEnableVerificationCode => _isEnableVerificationCode;
 
+  bool _isConnected = true;
+  bool get isConnected => _isConnected;
+
   updateVerificationCode(String query) {
     if (query.length == 4) {
       _isEnableVerificationCode = true;
@@ -96,6 +102,25 @@ class AuthProvider with ChangeNotifier {
   bool isLoggedIn() {
     return authRepo.isLoggedIn();
   }
+
+
+  StreamSubscription<ConnectivityResult> _streamSubscription;
+
+  bool checkConnected(){
+     _streamSubscription = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      // Got a new connectivity status!
+       _isConnected =result != ConnectivityResult.none;
+       print(result);
+       notifyListeners();
+    });
+  }
+
+  cancelConnectivitySubscription(){
+    _streamSubscription.cancel();
+    notifyListeners();
+  }
+
+
 
   Future<bool> clearSharedData() async {
     return await authRepo.clearSharedData();

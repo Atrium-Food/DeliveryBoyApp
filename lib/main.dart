@@ -10,6 +10,7 @@ import 'package:resturant_delivery_boy/provider/localization_provider.dart';
 import 'package:resturant_delivery_boy/provider/language_provider.dart';
 import 'package:resturant_delivery_boy/provider/location_provider.dart';
 import 'package:resturant_delivery_boy/provider/order_provider.dart';
+import 'package:resturant_delivery_boy/provider/payout_provider.dart';
 import 'package:resturant_delivery_boy/provider/profile_provider.dart';
 import 'package:resturant_delivery_boy/provider/splash_provider.dart';
 import 'package:resturant_delivery_boy/provider/theme_provider.dart';
@@ -42,6 +43,7 @@ Future<void> main() async {
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<TrackerProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<PayoutProvider>()),
     ],
     child: MyApp(),
   ));

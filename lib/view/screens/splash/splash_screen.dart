@@ -25,6 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() {
+
+    Provider.of<AuthProvider>(context, listen: false).checkConnected();
     Provider.of<SplashProvider>(context, listen: false).initSharedData();
     Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
       if (isSuccess) {

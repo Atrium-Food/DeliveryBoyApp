@@ -6,7 +6,7 @@ ThemeData light = ThemeData(
   fontFamily: 'Rubik',
   brightness: Brightness.light,
   buttonColor: ColorResources.COLOR_WHITE,
-  scaffoldBackgroundColor: ColorResources.COLOR_PRIMARY,
+  scaffoldBackgroundColor: ColorResources.COLOR_WHITE,
   hintColor: Colors.grey,
   primaryColorLight: ColorResources.COLOR_PRIMARY,
   canvasColor: ColorResources.COLOR_PRIMARY,
@@ -14,7 +14,8 @@ ThemeData light = ThemeData(
   shadowColor: Color(0xfffcf9f4),
   backgroundColor: Color(0xffF4F7FC), // for background color
   cardColor: Color(0xFFFFFFFF), // for surface color
-  primaryColor: Color(0xFFFC6A57), // for primary color
+  primaryColor: Color(0xFF00B37B),
+  // Color(0xFFFC6A57), // for primary color
   accentColor: Color(0xFF1F1F1F), // for on background text
   focusColor: Color(0xFF1F1F1F),  // for On Surface text color
   dividerColor: Color(0xFF2A2A2A), // for Any line

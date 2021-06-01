@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ColorResources {
-  static const Color COLOR_PRIMARY = Color(0xFFFC6A57);
+  static const Color COLOR_PRIMARY = Color(0xFF00B37B);
+  // Color(0xFFFC6A57);
   static const Color COLOR_GREY = Color(0xFFA0A4A8);
   static const Color COLOR_BLACK = Color(0xFF000000);
   static const Color COLOR_NERO = Color(0xFF1F1F1F);
