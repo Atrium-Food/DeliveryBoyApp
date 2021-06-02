@@ -96,5 +96,11 @@
   "enter_email_address": "Enter email address",
   "enter_password": "Enter password",
   "password_should_be": "Password should be getter than 6 character",
-  "enter_valid_email": "Enter valid email"
+  "enter_valid_email": "Enter valid email",
+  "dashboard" : "Dashboard",
+  "payout" : "Payout",
+  "rank" : "Rank",
+  "deposit" : "Deposit",
+  "more" : "More",
+  "help" : "Help"
 }
