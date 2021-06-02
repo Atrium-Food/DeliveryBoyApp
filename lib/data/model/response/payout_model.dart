@@ -30,7 +30,7 @@ class PayoutModel{
     _weekPayouts = json["week_payouts"]; // list of 7
     _monthlyEarning = EarningBody.fromJson(json["monthly_earning"]);
     _monthlyPerformance = PerformanceBody.fromJson(json["monthly_performance"]);
-    _monthPayouts = json["month_payouts"]; // list of 5
+    _monthPayouts = json["monthly_payouts"]; // list of 5
   }
 
   PerformanceBody get dailyPerformance => _dailyPerformance;

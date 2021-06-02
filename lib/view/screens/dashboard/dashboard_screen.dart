@@ -33,6 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       HomeScreen(),
       PayoutScreen(),
       RankScreen(),
+      // OrderHistoryScreen(),
       DepositScreen(),
       ProfileScreen(),
     ];

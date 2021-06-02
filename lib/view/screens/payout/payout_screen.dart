@@ -30,6 +30,7 @@ class _PayoutScreenState extends State<PayoutScreen> with TickerProviderStateMix
       body: Consumer<PayoutProvider>(
         builder: (context, payoutProvider, child) {
           PayoutModel payoutModel= payoutProvider.payoutModel;
+          print(payoutModel.monthPayouts);
           return Container(
             child: Column(
               children: [
