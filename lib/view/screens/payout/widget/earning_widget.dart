@@ -14,7 +14,7 @@ class EarningWidget extends StatelessWidget {
     final _screenSize = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(width: 0.4),
+          border: Border.all(width: 0.4,color: Theme.of(context).accentColor),
           borderRadius: BorderRadius.circular(5)
       ),
       width: _screenSize.width*0.9,
@@ -24,9 +24,9 @@ class EarningWidget extends StatelessWidget {
              padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
              child: Row(
                children: [
-                 Text("Earning's ${first}",style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 25),),
+                 Text("Earning's ${first}",style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),),
                  Spacer(),
-                 Text('\u{20B9}'+earning.total.toString(),style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 25),),
+                 Text('\u{20B9}'+earning.total.toString(),style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20),),
                ],
              ),
            ),

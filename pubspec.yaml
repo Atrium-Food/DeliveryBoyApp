@@ -46,6 +46,8 @@ dependencies:
   connectivity: ^3.0.6
   emojis: ^0.9.3
   flutter_rating_bar: ^4.0.0
+  charts_flutter: ^0.10.0
+  intl: ^0.17.0
 
 
 dev_dependencies:

@@ -19,6 +19,7 @@ class ColorResources {
   static const Color COLOR_GREY_CHATEAU = Color(0xffA0A4A8);
   static const Color BORDER_COLOR = Color(0xFFDCDCDC);
   static const Color DISABLE_COLOR = Color(0xFF979797);
+  static const Color PRIMARY_DARK = Color(0xFF007A54);
 
   static const Map<int, Color> colorMap = {
     50: Color(0x10192D6B),

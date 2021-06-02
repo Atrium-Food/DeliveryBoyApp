@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resturant_delivery_boy/data/model/body/performance_body.dart';
+import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 
 class PerformanceCard extends StatelessWidget {
@@ -11,7 +12,7 @@ class PerformanceCard extends StatelessWidget {
     return Container(
       height: 80,
       decoration: BoxDecoration(
-        border: Border.all(width: 0.4),
+        border: Border.all(width: 0.25,color: Theme.of(context).accentColor),
         borderRadius: BorderRadius.circular(5)
       ),
       width: _screenSize.width*0.9,
@@ -23,7 +24,7 @@ class PerformanceCard extends StatelessWidget {
             width: _screenSize.width*0.28,
             decoration: BoxDecoration(
               border: Border(
-                right: BorderSide(width: 0.4)
+                right: BorderSide(width: 0.2,color: Theme.of(context).accentColor)
               )
             ),
             child: Center(
@@ -31,9 +32,9 @@ class PerformanceCard extends StatelessWidget {
 
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(performance.trips.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black26,
-                  fontSize: 30),),
-                  Text("Trips",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 20),)
+                  Text(performance.trips.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black12,
+                  fontSize: 22),),
+                  Text("Trips",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 15,color: Theme.of(context).accentColor),)
                 ],
               ),
             ),
@@ -42,15 +43,15 @@ class PerformanceCard extends StatelessWidget {
             width: _screenSize.width*0.28,
             decoration: BoxDecoration(
                 border: Border(
-                    right: BorderSide(width: 0.4)
+                    right: BorderSide(width: 0.2,color: Theme.of(context).accentColor)
                 )
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(performance.hours.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black26,
-                    fontSize: 30,),),
-                Text("Hours",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 20),)
+                Text(performance.hours.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black12,
+                    fontSize: 20,),),
+                Text("Hours",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 15),)
               ],
             ),
           ),
@@ -59,9 +60,9 @@ class PerformanceCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(performance.orders.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black26,
-                    fontSize: 30,),),
-                Text("Orders",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 20),)
+                Text(performance.orders.toString(),style: Theme.of(context).textTheme.bodyText2.copyWith(color: Theme.of(context).accentColor,backgroundColor: Colors.black12,
+                    fontSize: 20,),),
+                Text("Orders",style: Theme.of(context).textTheme.headline1.copyWith(fontSize: 15,color: Theme.of(context).accentColor),)
               ],
             ),
           )
