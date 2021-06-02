@@ -1,24 +1,25 @@
-import 'package:flutter/material.dart';
-
 class DepositModel {
-  double maxValue;
-  double inHand;
+  double _maxValue;
+  double _inHand;
 
-  DepositModel({
-    this.maxValue,
-    this.inHand,
-  });
+  DepositModel({double maxValue, double inHand}) {
+    this._inHand = inHand;
+    this._maxValue = maxValue;
+  }
+
+  double get inHand => _inHand;
+  double get maxValue => _maxValue;
 
   DepositModel.fromJson(Map<String, dynamic> json) {
-    maxValue = json['maxValue'];
-    inHand = json['inHand'];
+    _maxValue = json['maxValue'];
+    _inHand = json['inHand'];
   }
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = new Map<String, dynamic>();
 
-    data['maxValue'] = this.maxValue;
-    data['inHand'] = this.inHand;
+    data['maxValue'] = this._maxValue;
+    data['inHand'] = this._inHand;
 
     return data;
   }

@@ -13,15 +13,16 @@ import 'package:resturant_delivery_boy/utill/styles.dart';
 import 'package:resturant_delivery_boy/view/base/status_widget.dart';
 import 'package:resturant_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:resturant_delivery_boy/view/screens/more/profile_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/order/order_history_screen.dart';
-import 'package:resturant_delivery_boy/view/screens/profile/ratings_screen.dart';
+import 'package:resturant_delivery_boy/view/screens/more/ratings_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
+class MoreScreen extends StatefulWidget {
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _MoreScreenState createState() => _MoreScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _MoreScreenState extends State<MoreScreen> {
   bool val = true;
 
   @override
@@ -211,8 +212,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ],
                         ),
                         SizedBox(height: 20),
-                        _userInfoWidget(
-                            context: context, text: 'Manage Profile'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfileScreen()));
+                          },
+                          child: _userInfoWidget(
+                              context: context, text: 'Manage Profile'),
+                        ),
                         SizedBox(height: 15),
                         GestureDetector(
                             onTap: () {

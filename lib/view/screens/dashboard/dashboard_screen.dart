@@ -11,7 +11,7 @@ import 'package:resturant_delivery_boy/view/screens/deposit/deposit_screen.dart'
 import 'package:resturant_delivery_boy/view/screens/home/home_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/order/order_history_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/payout/payout_screen.dart';
-import 'package:resturant_delivery_boy/view/screens/profile/profile_screen.dart';
+import 'package:resturant_delivery_boy/view/screens/more/more_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/rank/rank_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       RankScreen(),
       // OrderHistoryScreen(),
       DepositScreen(),
-      ProfileScreen(),
+      MoreScreen(),
     ];
 
     var androidInitialize = AndroidInitializationSettings('notification_icon');

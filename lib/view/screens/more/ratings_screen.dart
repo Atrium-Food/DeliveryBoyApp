@@ -9,7 +9,7 @@ import 'package:resturant_delivery_boy/provider/profile_provider.dart';
 import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 import 'package:resturant_delivery_boy/utill/styles.dart';
-import 'package:resturant_delivery_boy/view/screens/profile/widgets/star_display_widget.dart';
+import 'package:resturant_delivery_boy/view/screens/more/widgets/star_display_widget.dart';
 
 class RatingsScreen extends StatelessWidget {
   const RatingsScreen({Key key}) : super(key: key);

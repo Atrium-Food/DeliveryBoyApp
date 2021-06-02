@@ -1,6 +1,7 @@
-import 'package:emojis/emojis.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resturant_delivery_boy/data/model/response/base/deposit_model.dart';
+import 'package:resturant_delivery_boy/data/model/response/userinfo_model.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/deposit_provider.dart';
 import 'package:resturant_delivery_boy/provider/location_provider.dart';
@@ -11,6 +12,7 @@ import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 import 'package:resturant_delivery_boy/utill/images.dart';
 import 'package:resturant_delivery_boy/utill/styles.dart';
+import 'package:resturant_delivery_boy/view/screens/deposit/payment.dart';
 import 'package:resturant_delivery_boy/view/screens/home/widget/order_widget.dart';
 import 'package:resturant_delivery_boy/view/screens/language/choose_language_screen.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +28,14 @@ class _DepositScreenState extends State<DepositScreen> {
   bool val = true;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Provider.of<DepositProvider>(context, listen: false).getDeposit(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).cardColor,
@@ -84,165 +93,185 @@ class _DepositScreenState extends State<DepositScreen> {
           inactiveThumbColor: ColorResources.COLOR_WHITE,
         ),
       ),
-      body: Consumer<DepositProvider>(
-        builder: (context, depositProvider, child) {
-          return Container(
-            padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Consumer<ProfileProvider>(
+        builder: (context, profileProvider, child) => Container(
+          child: Consumer<DepositProvider>(
+            builder: (context, depositProvider, child) {
+              DepositModel depositModel = depositProvider.depositModel;
+              return Container(
+                padding: EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Available Limit',
-                            style:
-                                Theme.of(context).textTheme.headline4.copyWith(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Available Limit',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline4
+                                    .copyWith(
                                       fontSize: 18,
                                     ),
-                          ),
-                          SizedBox(
-                            height: 10,
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                '31 May',
+                                style: rubikRegular.copyWith(
+                                    color: Color(0xFF9A9A9A), fontSize: 14),
+                              ),
+                            ],
                           ),
                           Text(
-                            '31 May',
-                            style: rubikRegular.copyWith(
-                                color: Color(0xFF9A9A9A), fontSize: 14),
+                            '₹${depositModel.inHand}',
+                            style: rubikMedium.copyWith(fontSize: 23),
                           ),
                         ],
                       ),
-                      Text(
-                        '₹${depositProvider.depositModel.inHand.toString()}',
-                        style: rubikMedium.copyWith(fontSize: 23),
+                      SizedBox(
+                        height: 20,
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  FlutterSlider(
-                    max: depositProvider.depositModel.maxValue,
-                    disabled: true,
-                    values: [depositProvider.depositModel.inHand],
-                    min: 0,
-                    tooltip: FlutterSliderTooltip(
-                        alwaysShowTooltip: true,
-                        format: (String value) {
-                          return '₹' + value;
-                        },
-                        custom: (value) {
-                          return Text(
-                            '₹ ${value.toString()}',
-                            style: rubikRegular.copyWith(
-                              color: ColorResources.COLOR_GREY,
-                            ),
-                          );
-                        }),
-                    trackBar: FlutterSliderTrackBar(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '₹0',
-                        style: TextStyle(color: ColorResources.COLOR_GREY),
+                      FlutterSlider(
+                        max: depositModel.maxValue,
+                        disabled: true,
+                        values: [depositModel.inHand],
+                        min: 0,
+                        tooltip: FlutterSliderTooltip(
+                            alwaysShowTooltip: true,
+                            format: (String value) {
+                              return '₹' + value;
+                            },
+                            custom: (value) {
+                              return Text(
+                                '₹ ${value.toString()}',
+                                style: rubikRegular.copyWith(
+                                  color: ColorResources.COLOR_GREY,
+                                ),
+                              );
+                            }),
+                        trackBar: FlutterSliderTrackBar(),
                       ),
-                      Text(
-                        '₹ ${depositProvider.depositModel.maxValue}',
-                        style: TextStyle(color: ColorResources.COLOR_GREY),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: ColorResources.COLOR_GREY,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Cash in Hand',
-                            style: rubikRegular.copyWith(fontSize: 13),
-                          ),
-                          SizedBox(
-                            height: 10,
+                            '₹0',
+                            style: TextStyle(color: ColorResources.COLOR_GREY),
                           ),
                           Text(
-                            'Deposit cash when you reach the limit',
-                            style: rubikRegular.copyWith(
-                                color: Color(0xFF9A9A9A), fontSize: 11),
+                            '₹ ${depositModel.maxValue}',
+                            style: TextStyle(color: ColorResources.COLOR_GREY),
                           ),
                         ],
                       ),
-                      Text(
-                        '₹${depositProvider.depositModel.maxValue - depositProvider.depositModel.inHand}',
-                        style: rubikMedium.copyWith(fontSize: 20),
+                      Divider(
+                        color: ColorResources.COLOR_GREY,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Cash in Hand',
+                                style: rubikRegular.copyWith(fontSize: 13),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'Deposit cash when you reach the limit',
+                                style: rubikRegular.copyWith(
+                                    color: Color(0xFF9A9A9A), fontSize: 11),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            '₹${depositModel.maxValue - depositModel.inHand}',
+                            style: rubikMedium.copyWith(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Divider(
+                        color: ColorResources.COLOR_GREY,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Available Balance',
+                            style: TextStyle(
+                                color: ColorResources.COLOR_GREY,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w200),
+                          ),
+                          Text(
+                            '₹ 0',
+                            style: TextStyle(
+                                color: ColorResources.COLOR_GREY, fontSize: 15),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Divider(
+                        color: ColorResources.COLOR_GREY,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Payment(
+                                        amount: depositModel.inHand.toInt(),
+                                        email:
+                                            profileProvider.userInfoModel.email,
+                                        phone:
+                                            profileProvider.userInfoModel.phone,
+                                        name: profileProvider
+                                            .userInfoModel.fName)));
+                          },
+                          child: _paymentMethodWidget(
+                              text: 'Pay Online', context: context)),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      _paymentMethodWidget(
+                          text: 'Deposit at Pantry', context: context),
+                      SizedBox(
+                        height: 20,
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Divider(
-                    color: ColorResources.COLOR_GREY,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Available Balance',
-                        style: TextStyle(
-                            color: ColorResources.COLOR_GREY,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w200),
-                      ),
-                      Text(
-                        '₹ 0',
-                        style: TextStyle(
-                            color: ColorResources.COLOR_GREY, fontSize: 15),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Divider(
-                    color: ColorResources.COLOR_GREY,
-                    thickness: 1,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  _paymentMethodWidget(text: 'Pay by UPI', context: context),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _paymentMethodWidget(
-                      text: 'Deposit at Pantry', context: context),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _paymentMethodWidget(
-                      text: 'Pay by Card / Netbanking', context: context)
-                ],
-              ),
-            ),
-          );
-        },
+                ),
+              );
+            },
+          ),
+        ),
       ),
     );
   }
