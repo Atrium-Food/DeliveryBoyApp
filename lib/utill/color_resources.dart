@@ -32,5 +32,4 @@ class ColorResources {
     800: Color(0x90192D6B),
     900: Color(0xff192D6B),
   };
-
 }
