@@ -8,13 +8,21 @@ class AppConstants {
   static const String LOGIN_URI = '/api/v1/auth/delivery-man/login';
   static const String NOTIFICATION_URI = '/api/v1/notifications';
   static const String UPDATE_PROFILE_URI = '/api/v1/customer/update-profile';
-  static const String CURRENT_ORDERS_URI = '/api/v1/delivery-man/current-orders?token=';
-  static const String ORDER_DETAILS_URI = '/api/v1/delivery-man/order-details?token=';
-  static const String ORDER_HISTORY_URI = '/api/v1/delivery-man/all-orders?token=';
-  static const String RECORD_LOCATION_URI = '/api/v1/delivery-man/record-location-data';
-  static const String UPDATE_ORDER_STATUS_URI = '/api/v1/delivery-man/update-order-status';
-  static const String UPDATE_PAYMENT_STATUS_URI = '/api/v1/delivery-man/update-payment-status';
+  static const String CURRENT_ORDERS_URI =
+      '/api/v1/delivery-man/current-orders?token=';
+  static const String ORDER_DETAILS_URI =
+      '/api/v1/delivery-man/order-details?token=';
+  static const String ORDER_HISTORY_URI =
+      '/api/v1/delivery-man/all-orders?token=';
+  static const String RECORD_LOCATION_URI =
+      '/api/v1/delivery-man/record-location-data';
+  static const String UPDATE_ORDER_STATUS_URI =
+      '/api/v1/delivery-man/update-order-status';
+  static const String UPDATE_PAYMENT_STATUS_URI =
+      '/api/v1/delivery-man/update-payment-status';
   static const String PAYOUT_URI = '/api/v1/delivery-man/payout';
+  static const String DEPOSIT_URI = '/api/v1/delivery-man/deposit';
+  static const String RANKING_URI = '/api/v1/delivery-man/ranking';
   static const String TOKEN_URI = '/api/v1/delivery-man/update-fcm-token';
 
   // Shared Key
@@ -27,7 +35,15 @@ class AppConstants {
   static const String USER_EMAIL = 'user_email';
 
   static List<LanguageModel> languages = [
-    LanguageModel(imageUrl: Images.united_kindom, languageName: 'English', countryCode: 'US', languageCode: 'en'),
-    LanguageModel(imageUrl: Images.arabic, languageName: 'Arabic', countryCode: 'SA', languageCode: 'ar'),
+    LanguageModel(
+        imageUrl: Images.united_kindom,
+        languageName: 'English',
+        countryCode: 'US',
+        languageCode: 'en'),
+    LanguageModel(
+        imageUrl: Images.arabic,
+        languageName: 'Arabic',
+        countryCode: 'SA',
+        languageCode: 'ar'),
   ];
 }

@@ -1,18 +1,22 @@
 import 'package:dio/dio.dart';
 import 'package:resturant_delivery_boy/data/repository/auth_repo.dart';
+import 'package:resturant_delivery_boy/data/repository/deposit_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/language_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/order_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/payout_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/profile_repo.dart';
+import 'package:resturant_delivery_boy/data/repository/ranking_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/splash_repo.dart';
 import 'package:resturant_delivery_boy/data/repository/tracker_repo.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
+import 'package:resturant_delivery_boy/provider/deposit_provider.dart';
 import 'package:resturant_delivery_boy/provider/localization_provider.dart';
 import 'package:resturant_delivery_boy/provider/language_provider.dart';
 import 'package:resturant_delivery_boy/provider/location_provider.dart';
 import 'package:resturant_delivery_boy/provider/order_provider.dart';
 import 'package:resturant_delivery_boy/provider/payout_provider.dart';
 import 'package:resturant_delivery_boy/provider/profile_provider.dart';
+import 'package:resturant_delivery_boy/provider/ranking_provider.dart';
 import 'package:resturant_delivery_boy/provider/splash_provider.dart';
 import 'package:resturant_delivery_boy/provider/theme_provider.dart';
 import 'package:resturant_delivery_boy/provider/tracker_provider.dart';
@@ -26,18 +30,31 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Core
-  sl.registerLazySingleton(() => DioClient(AppConstants.BASE_URL, sl(), loggingInterceptor: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(() => DioClient(AppConstants.BASE_URL, sl(),
+      loggingInterceptor: sl(), sharedPreferences: sl()));
 
   // Repository
-  sl.registerLazySingleton(() => PayoutRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(
+      () => RankingRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => DepositRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => PayoutRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
   sl.registerLazySingleton(() => LanguageRepo());
-  sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => ProfileRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => OrderRepo(dioClient: sl(), sharedPreferences: sl()));
-  sl.registerLazySingleton(() => TrackerRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => ProfileRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => OrderRepo(dioClient: sl(), sharedPreferences: sl()));
+  sl.registerLazySingleton(
+      () => TrackerRepo(dioClient: sl(), sharedPreferences: sl()));
 
   // Provider
+  sl.registerFactory(() => RankingProvider(rankingRepo: sl()));
+  sl.registerFactory(() => DepositProvider(depositRepo: sl()));
   sl.registerFactory(() => PayoutProvider(payoutRepo: sl()));
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
   sl.registerFactory(() => SplashProvider(splashRepo: sl()));

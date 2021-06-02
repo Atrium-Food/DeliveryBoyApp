@@ -16,7 +16,8 @@ class ProfileProvider with ChangeNotifier {
 
   getUserInfo(BuildContext context) async {
     ApiResponse apiResponse = await profileRepo.getUserInfo();
-    if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+    if (apiResponse.response != null &&
+        apiResponse.response.statusCode == 200) {
       _userInfoModel = UserInfoModel.fromJson(apiResponse.response.data);
     } else {
       if (apiResponse.error is String) {

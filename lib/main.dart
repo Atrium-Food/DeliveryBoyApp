@@ -6,12 +6,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:resturant_delivery_boy/localization/app_localization.dart';
 import 'package:resturant_delivery_boy/notification/my_notification.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
+import 'package:resturant_delivery_boy/provider/deposit_provider.dart';
 import 'package:resturant_delivery_boy/provider/localization_provider.dart';
 import 'package:resturant_delivery_boy/provider/language_provider.dart';
 import 'package:resturant_delivery_boy/provider/location_provider.dart';
 import 'package:resturant_delivery_boy/provider/order_provider.dart';
 import 'package:resturant_delivery_boy/provider/payout_provider.dart';
 import 'package:resturant_delivery_boy/provider/profile_provider.dart';
+import 'package:resturant_delivery_boy/provider/ranking_provider.dart';
 import 'package:resturant_delivery_boy/provider/splash_provider.dart';
 import 'package:resturant_delivery_boy/provider/theme_provider.dart';
 import 'package:resturant_delivery_boy/provider/tracker_provider.dart';
@@ -22,7 +24,8 @@ import 'package:resturant_delivery_boy/view/screens/splash/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'di_container.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,17 +36,21 @@ Future<void> main() async {
 
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider(create: (context) => di.sl<DepositProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LanguageProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
-      ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>()),
+      ChangeNotifierProvider(
+          create: (context) => di.sl<LocalizationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ProfileProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<OrderProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocationProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<TrackerProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<PayoutProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<RankingProvider>()),
     ],
     child: MyApp(),
   ));

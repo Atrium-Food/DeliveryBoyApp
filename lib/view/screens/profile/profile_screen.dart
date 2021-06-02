@@ -14,7 +14,7 @@ import 'package:resturant_delivery_boy/view/base/status_widget.dart';
 import 'package:resturant_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:resturant_delivery_boy/view/screens/order/order_history_screen.dart';
-import 'package:resturant_delivery_boy/view/screens/profile/raings_screen.dart';
+import 'package:resturant_delivery_boy/view/screens/profile/ratings_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
