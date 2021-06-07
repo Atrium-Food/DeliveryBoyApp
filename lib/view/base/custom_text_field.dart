@@ -23,27 +23,29 @@ class CustomTextField extends StatefulWidget {
   final String prefixIconUrl;
   final bool isSearch;
   final LanguageProvider languageProvider;
-
-  CustomTextField(
-      {this.hintText = 'Write something...',
-      this.controller,
-      this.focusNode,
-      this.nextFocus,
-      this.inputType = TextInputType.text,
-      this.inputAction = TextInputAction.next,
-      this.maxLines = 1,
-      this.fillColor,
-      this.isCountryPicker = false,
-      this.isShowBorder = false,
-      this.isShowSuffixIcon = false,
-      this.isShowPrefixIcon = false,
-      this.onTap,
-      this.isIcon = false,
-      this.isPassword = false,
-      this.suffixIconUrl,
-      this.prefixIconUrl,
-      this.isSearch = false,
-      this.languageProvider});
+  final String errorMessage;
+  CustomTextField({
+    this.hintText = 'Write something...',
+    this.controller,
+    this.errorMessage = '',
+    this.focusNode,
+    this.nextFocus,
+    this.inputType = TextInputType.text,
+    this.inputAction = TextInputAction.next,
+    this.maxLines = 1,
+    this.fillColor,
+    this.isCountryPicker = false,
+    this.isShowBorder = false,
+    this.isShowSuffixIcon = false,
+    this.isShowPrefixIcon = false,
+    this.onTap,
+    this.isIcon = false,
+    this.isPassword = false,
+    this.suffixIconUrl,
+    this.prefixIconUrl,
+    this.isSearch = false,
+    this.languageProvider,
+  });
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -56,20 +58,33 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL),
+          borderRadius:
+              BorderRadius.circular(Dimensions.PADDING_SIZE_EXTRA_SMALL),
           color: Theme.of(context).cardColor,
-          border: Border.all(color: widget.isShowBorder ? ColorResources.colorMap[200] : Colors.transparent)),
+          border: Border.all(
+              color: widget.isShowBorder
+                  ? ColorResources.colorMap[200]
+                  : Colors.transparent)),
       child: TextField(
         maxLines: widget.maxLines,
         controller: widget.controller,
         focusNode: widget.focusNode,
-        style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).accentColor, fontSize: Dimensions.FONT_SIZE_LARGE),
+        style: Theme.of(context).textTheme.headline2.copyWith(
+            color: Theme.of(context).accentColor,
+            fontSize: Dimensions.FONT_SIZE_LARGE),
         textInputAction: widget.inputAction,
         keyboardType: widget.inputType,
         cursorColor: ColorResources.COLOR_PRIMARY,
         //onChanged: widget.isSearch ? widget.languageProvider.searchLanguage : null,
         obscureText: widget.isPassword ? _obscureText : false,
         decoration: InputDecoration(
+          errorText: widget.errorMessage.length > 0
+              ? 'ⓘ ${widget.errorMessage}'
+              : null,
+          errorStyle: TextStyle(
+            color: Colors.red,
+            fontWeight: FontWeight.w200,
+          ),
           contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 22),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
@@ -77,12 +92,18 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           isDense: true,
           hintText: widget.hintText,
-          fillColor: widget.fillColor != null ? widget.fillColor : Theme.of(context).cardColor,
-          hintStyle: Theme.of(context).textTheme.headline2.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL, color: ColorResources.COLOR_GREY_CHATEAU),
+          fillColor: widget.fillColor != null
+              ? widget.fillColor
+              : Theme.of(context).cardColor,
+          hintStyle: Theme.of(context).textTheme.headline2.copyWith(
+              fontSize: Dimensions.FONT_SIZE_SMALL,
+              color: ColorResources.COLOR_GREY_CHATEAU),
           filled: true,
           prefixIcon: widget.isShowPrefixIcon
               ? Padding(
-                  padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
+                  padding: const EdgeInsets.only(
+                      left: Dimensions.PADDING_SIZE_LARGE,
+                      right: Dimensions.PADDING_SIZE_SMALL),
                   child: Image.asset(widget.prefixIconUrl),
                 )
               : SizedBox.shrink(),
@@ -90,11 +111,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           suffixIcon: widget.isShowSuffixIcon
               ? widget.isPassword
                   ? IconButton(
-                      icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Theme.of(context).hintColor.withOpacity(.3)),
+                      icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).hintColor.withOpacity(.3)),
                       onPressed: _toggle)
                   : widget.isIcon
                       ? Padding(
-                          padding: const EdgeInsets.only(left: Dimensions.PADDING_SIZE_LARGE, right: Dimensions.PADDING_SIZE_SMALL),
+                          padding: const EdgeInsets.only(
+                              left: Dimensions.PADDING_SIZE_LARGE,
+                              right: Dimensions.PADDING_SIZE_SMALL),
                           child: Image.asset(
                             widget.suffixIconUrl,
                             width: 15,
@@ -105,7 +132,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
               : null,
         ),
         onTap: widget.onTap,
-        onSubmitted: (text) => widget.nextFocus != null ? FocusScope.of(context).requestFocus(widget.nextFocus) : null,
+        onSubmitted: (text) => widget.nextFocus != null
+            ? FocusScope.of(context).requestFocus(widget.nextFocus)
+            : null,
       ),
     );
   }
