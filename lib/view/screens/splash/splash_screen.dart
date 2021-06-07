@@ -6,6 +6,7 @@ import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
 import 'package:resturant_delivery_boy/provider/splash_provider.dart';
 import 'package:resturant_delivery_boy/utill/images.dart';
+import 'package:resturant_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/dashboard/dashboard_screen.dart';
 import 'package:resturant_delivery_boy/view/screens/language/choose_language_screen.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Provider.of<AuthProvider>(context, listen: false).updateToken();
             _checkPermission(DashboardScreen());
           } else {
-            _checkPermission(ChooseLanguageScreen());
+            _checkPermission(LoginScreen());
           }
 
         });

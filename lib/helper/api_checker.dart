@@ -8,7 +8,7 @@ class ApiChecker {
   static void checkApi(BuildContext context, ApiResponse apiResponse) {
     if(apiResponse.error is! String && (apiResponse.error.errors[0].message == 'Unauthenticated.' || apiResponse.error.errors[0].message == 'Invalid token!')) {
       Provider.of<SplashProvider>(context, listen: false).removeSharedData();
-      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
+      // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => LoginScreen()), (route) => false);
     }else {
       String _errorMessage;
       if (apiResponse.error is String) {

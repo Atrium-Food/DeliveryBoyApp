@@ -18,13 +18,15 @@ class OrderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: EdgeInsets.only(bottom: Dimensions.PADDING_SIZE_SMALL,left: Dimensions.PADDING_SIZE_SMALL,right:  Dimensions.PADDING_SIZE_SMALL ),
       decoration: BoxDecoration(
-          boxShadow: [BoxShadow(color: Theme.of(context).shadowColor.withOpacity(.5), spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
-          color: Theme.of(context).cardColor,
+        border: Border.all(color: Theme.of(context).primaryColorDark),
+          // boxShadow: [BoxShadow(color: Theme.of(context).shadowColor.withOpacity(.5), spreadRadius: 1, blurRadius: 1, offset: Offset(0, 1))],
+          color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(Dimensions.PADDING_SIZE_SMALL)),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,11 +35,11 @@ class OrderWidget extends StatelessWidget {
                 children: [
                   Text(
                     getTranslated('order_id', context),
-                    style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                    style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).primaryColorDark),
                   ),
                   Text(
                     ' # ${orderModel.id.toString()}',
-                    style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                    style: Theme.of(context).textTheme.headline3.copyWith(color: Theme.of(context).primaryColorDark),
                   ),
                 ],
               ),
@@ -47,11 +49,11 @@ class OrderWidget extends StatelessWidget {
                   Provider.of<LocalizationProvider>(context).isLtr
                       ? Positioned(
                           right: -10,
-                          top: -23,
+                          top: -13,
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).primaryColorDark,
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(Dimensions.PADDING_SIZE_SMALL),
                                     bottomLeft: Radius.circular(Dimensions.PADDING_SIZE_SMALL))),
@@ -60,7 +62,7 @@ class OrderWidget extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
-                                  .copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.FONT_SIZE_SMALL),
+                                  .copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_SMALL),
                             ),
                           ),
                         )
@@ -70,7 +72,7 @@ class OrderWidget extends StatelessWidget {
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL, horizontal: Dimensions.PADDING_SIZE_DEFAULT),
                             decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).primaryColorDark,
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(Dimensions.PADDING_SIZE_SMALL),
                                     bottomLeft: Radius.circular(Dimensions.PADDING_SIZE_SMALL))),
@@ -79,7 +81,7 @@ class OrderWidget extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
-                                  .copyWith(color: Theme.of(context).primaryColorDark, fontSize: Dimensions.FONT_SIZE_SMALL),
+                                  .copyWith(color: Theme.of(context).primaryColor, fontSize: Dimensions.FONT_SIZE_SMALL),
                             ),
                           ),
                         )
@@ -87,44 +89,70 @@ class OrderWidget extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 25),
+          SizedBox(height: 5),
           Row(
             children: [
-              Image.asset(Images.location, color: Theme.of(context).textTheme.bodyText1.color, width: 15, height: 20),
-              SizedBox(width: 10),
               Expanded(
                   child: Text(
                 orderModel.deliveryAddress != null ? orderModel.deliveryAddress.address : 'Address not found',
-                style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).textTheme.bodyText1.color),
+                style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).primaryColorDark),
               )),
-            ],
-          ),
-          SizedBox(height: 25),
-          Row(
-            children: [
-              Expanded(
-                  child: CustomButton(
-                btnTxt: getTranslated('view_details', context),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
-                },
-                isShowBorder: true,
-              )),
-              SizedBox(width: 20),
               Consumer<LocationProvider>(
-                builder: (context, locationProvider, child) => Expanded(
-                    child: CustomButton(
-                        btnTxt: getTranslated('direction', context),
-                        onTap: () {
-                          MapUtils.openMap(
-                              double.parse(orderModel.deliveryAddress.latitude) ?? 23.8103,
-                              double.parse(orderModel.deliveryAddress.longitude) ?? 90.4125,
-                              locationProvider.currentLocation.latitude ?? 23.8103,
-                              locationProvider.currentLocation.longitude ?? 90.4125);
-                        })),
-              )
+                  builder: (context, locationProvider,child) {
+                    return PopupMenuButton(
+                        icon: Icon(Icons.more,color: Theme.of(context).primaryColorDark,),
+                        onSelected: (val){
+                          if(val=='directions'){
+                            MapUtils.openMap(
+                                double.parse(orderModel.deliveryAddress.latitude) ?? 23.8103,
+                                double.parse(orderModel.deliveryAddress.longitude) ?? 90.4125,
+                                locationProvider.currentLocation.latitude ?? 23.8103,
+                                locationProvider.currentLocation.longitude ?? 90.4125);
+                          } else if(val=='details'){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
+                          }
+                        },
+                        itemBuilder: (context){
+                          List<PopupMenuEntry> items = [];
+                          items.add(PopupMenuItem(
+                              value: 'details',
+                              child: Text("View Details")));
+                          items.add(PopupMenuItem(
+                              value: 'directions',
+                              child: Text("Directions")));
+                          return items;
+                        }
+                    );
+                  }
+              ),
             ],
           ),
+
+          // Row(
+          //   children: [
+          //     TextButton(
+          //     child: Text(getTranslated('view_details', context)),
+          //       onPressed: () {
+          //     Navigator.of(context).push(MaterialPageRoute(builder: (_) => OrderDetailsScreen(orderModel: orderModel, index: index)));
+          //       },
+          //     ),
+          //     SizedBox(width: 20),
+          //     Consumer<LocationProvider>(
+          //       builder: (context, locationProvider, child) => Expanded(
+          //           child: TextButton(
+          //               child: Text(getTranslated('direction', context)),
+          //               onPressed: () {
+          //                 print(locationProvider.currentLocation.latitude);
+          //                 print(locationProvider.currentLocation.longitude);
+          //                 MapUtils.openMap(
+          //                     double.parse(orderModel.deliveryAddress.latitude) ?? 23.8103,
+          //                     double.parse(orderModel.deliveryAddress.longitude) ?? 90.4125,
+          //                     locationProvider.currentLocation.latitude ?? 23.8103,
+          //                     locationProvider.currentLocation.longitude ?? 90.4125);
+          //               })),
+          //     )
+          //   ],
+          // ),
         ],
       ),
     );

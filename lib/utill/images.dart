@@ -22,4 +22,7 @@ class Images {
   static const String placeholder_rectangle = 'assets/image/placeholder_rectangle.png';
   static const String placeholder_user = 'assets/image/placeholder_user.png';
   static const String money = 'assets/image/money.png';
+  static const String delivery_boy_marker = 'assets/image/delivery_boy_marker.png';
+  static const String destination_marker = 'assets/image/destination_marker.png';
+  static const String address_marker = 'assets/image/unselected_restaurant_marker.png';
 }

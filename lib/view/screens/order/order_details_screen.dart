@@ -135,6 +135,9 @@ class OrderDetailsScreen extends StatelessWidget {
                                   placeholder: Images.placeholder_user,
                                   image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.customerImageUrl}/${orderModel.customer.image ?? ''}',
                                   height: 40, width: 40, fit: BoxFit.cover,
+                                  imageErrorBuilder: (context, image, StackTrace trace){
+                                    return Image.asset(Images.placeholder_user,height: 40,);
+                                  },
                                 ),
                               ),
                               title: Text(
@@ -390,11 +393,12 @@ class OrderDetailsScreen extends StatelessWidget {
                                 token: token,
                                 latitude: Provider.of<LocationProvider>(context, listen: false).currentLocation.latitude ?? 23.8103,
                                 longitude: Provider.of<LocationProvider>(context, listen: false).currentLocation.longitude ?? 90.4125,
-                                location: Provider.of<LocationProvider>(context, listen: false).address.toString() ?? 'demo',
+                                location: Provider.of<LocationProvider>(context, listen: false).address!=null?Provider.of<LocationProvider>(context, listen: false).address.toString():'demo',
                                 orderId: orderModel.id.toString());
                             Provider.of<TrackerProvider>(context, listen: false).updateTrackStart(true);
-
+                            print("Track Body: ${trackBody.toJson()}");
                             Provider.of<TrackerProvider>(context, listen: false).addTrack(trackBody: trackBody).then((value) {
+                              print("Track added: $value");
                               Provider.of<OrderProvider>(context, listen: false)
                                   .updateOrderStatus(token: token, orderId: orderModel.id, status: 'out_for_delivery', index: index);
                               Provider.of<OrderProvider>(context, listen: false).getAllOrders(context);
