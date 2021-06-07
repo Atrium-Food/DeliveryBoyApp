@@ -46,7 +46,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:410522356318:android:645bda9c18b8f7623dc2cf",
         "android_client_info": {
-          "package_name": "com.u6amtech.resturant_delivery_boy"
+          "package_name": "com.atrium.delivery"
         }
       },
       "oauth_client": [
@@ -54,7 +54,7 @@
           "client_id": "410522356318-t1154nuc6g08eme8bib62h04dshuq4j7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.u6amtech.resturant_delivery_boy",
+            "package_name": "com.atrium.delivery",
             "certificate_hash": "87f723e5721c8c8eb805f9a08bf95d5e1e0183b7"
           }
         },
