@@ -10,6 +10,7 @@ import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 import 'package:resturant_delivery_boy/utill/images.dart';
 import 'package:resturant_delivery_boy/utill/styles.dart';
+import 'package:resturant_delivery_boy/view/base/custom_app_bar_online.dart';
 import 'package:resturant_delivery_boy/view/base/status_widget.dart';
 import 'package:resturant_delivery_boy/view/screens/auth/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -28,63 +29,7 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).cardColor,
-          actions: [
-            Consumer<OrderProvider>(
-              builder: (context, orderProvider, child) =>
-                  orderProvider.currentOrders.length > 0
-                      ? SizedBox.shrink()
-                      : IconButton(
-                          icon: Icon(Icons.refresh,
-                              color: ColorResources.COLOR_PRIMARY),
-                          onPressed: () {
-                            orderProvider.refresh(context);
-                          }),
-            ),
-            GestureDetector(
-              child: Icon(
-                CupertinoIcons.bell_fill,
-                color: ColorResources.COLOR_PRIMARY,
-              ),
-              onTap: () {},
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                margin:
-                    EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 13),
-                padding: EdgeInsets.all(2),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                    border: Border.all(
-                      color: ColorResources.COLOR_PRIMARY,
-                    )),
-                child: Text(
-                  getTranslated('help', context),
-                  style: rubikRegular.copyWith(
-                    color: ColorResources.COLOR_PRIMARY,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-          ],
-          leading: Switch(
-            value: val,
-            onChanged: (val) {
-              setState(() {
-                val = !val;
-              });
-            },
-            activeColor: ColorResources.COLOR_WHITE,
-            activeTrackColor: ColorResources.COLOR_PRIMARY,
-            inactiveTrackColor: ColorResources.COLOR_GRAY,
-            inactiveThumbColor: ColorResources.COLOR_WHITE,
-          ),
-        ),
+        appBar: CustomOnlineAppBar(),
         backgroundColor: Theme.of(context).backgroundColor,
         body: Consumer<ProfileProvider>(
           builder: (context, profileProvider, child) => Container(
@@ -235,17 +180,17 @@ class _MoreScreenState extends State<MoreScreen> {
                         SizedBox(height: 15),
                         _userInfoWidget(context: context, text: 'Benefits'),
                         SizedBox(height: 20),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          OrderHistoryScreen()));
-                            },
-                            child: _userInfoWidget(
-                                context: context, text: 'History')),
-                        SizedBox(height: 20),
+                        // GestureDetector(
+                        //     onTap: () {
+                        //       Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (context) =>
+                        //                   OrderHistoryScreen()));
+                        //     },
+                        //     child: _userInfoWidget(
+                        //         context: context, text: 'History')),
+                        // SizedBox(height: 20),
                         _userInfoWidget(
                             context: context, text: 'Contact Support'),
                         SizedBox(height: 20),

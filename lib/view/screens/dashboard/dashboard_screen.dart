@@ -31,10 +31,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     _screens = [
       HomeScreen(),
-      PayoutScreen(),
-      RankScreen(),
-      // OrderHistoryScreen(),
-      DepositScreen(),
+      OrderHistoryScreen(),
+      // PayoutScreen(),
+      // RankScreen(),
+      // // OrderHistoryScreen(),
+      // DepositScreen(),
       MoreScreen(),
     ];
 
@@ -75,12 +76,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
           items: [
             _barItem(Icons.dashboard_outlined,
                 getTranslated('dashboard', context), 0),
-            _barItem(Icons.account_balance_wallet_outlined,
-                getTranslated('payout', context), 1),
-            _barItem(Icons.military_tech_outlined,
-                getTranslated('rank', context), 2),
-            _barItem(Icons.money, getTranslated('deposit', context), 3),
-            _barItem(Icons.list, getTranslated('more', context), 4),
+            _barItem(Icons.history, 'History', 1),
+            // _barItem(Icons.account_balance_wallet_outlined,
+            //     getTranslated('payout', context), 1),
+            // _barItem(Icons.military_tech_outlined,
+            //     getTranslated('rank', context), 2),
+            // _barItem(Icons.money, getTranslated('deposit', context), 3),
+            _barItem(Icons.list, getTranslated('more', context), 2),
           ],
           onTap: (int index) {
             _setPage(index);

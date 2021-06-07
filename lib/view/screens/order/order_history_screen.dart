@@ -7,6 +7,7 @@ import 'package:resturant_delivery_boy/provider/order_provider.dart';
 import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 import 'package:resturant_delivery_boy/utill/styles.dart';
+import 'package:resturant_delivery_boy/view/base/custom_app_bar_online.dart';
 import 'package:resturant_delivery_boy/view/screens/order/order_details_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -19,25 +20,7 @@ class OrderHistoryScreen extends StatelessWidget {
     Provider.of<OrderProvider>(context, listen: false).getOrderHistory(context);
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            CupertinoIcons.back,
-            color: ColorResources.COLOR_BLACK,
-          ),
-        ),
-        elevation: 0,
-        backgroundColor: Theme.of(context).cardColor,
-        title: Text(
-          getTranslated('order_history', context),
-          style: Theme.of(context).textTheme.headline3.copyWith(
-              color: Theme.of(context).textTheme.bodyText1.color,
-              fontSize: Dimensions.FONT_SIZE_LARGE),
-        ),
-      ),
+      appBar: CustomOnlineAppBar(),
       body: Consumer<OrderProvider>(
         builder: (context, order, child) => order.allOrderHistory != null
             ? order.allOrderHistory.length > 0
