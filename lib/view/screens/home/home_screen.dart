@@ -9,6 +9,7 @@ import 'package:resturant_delivery_boy/utill/color_resources.dart';
 import 'package:resturant_delivery_boy/utill/dimensions.dart';
 import 'package:resturant_delivery_boy/utill/images.dart';
 import 'package:resturant_delivery_boy/utill/styles.dart';
+import 'package:resturant_delivery_boy/view/base/custom_app_bar_online.dart';
 import 'package:resturant_delivery_boy/view/screens/home/widget/order_widget.dart';
 import 'package:resturant_delivery_boy/view/screens/language/choose_language_screen.dart';
 import 'package:provider/provider.dart';
@@ -32,130 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).cardColor,
-        actions: [
-          Consumer<OrderProvider>(
-            builder: (context, orderProvider, child) =>
-                orderProvider.currentOrders.length > 0
-                    ? SizedBox.shrink()
-                    : IconButton(
-                        icon: Icon(Icons.refresh,
-                            color: ColorResources.COLOR_PRIMARY),
-                        onPressed: () {
-                          orderProvider.refresh(context);
-                        }),
-          ),
-          GestureDetector(
-            child: Icon(
-              CupertinoIcons.bell_fill,
-              color: ColorResources.COLOR_PRIMARY,
-            ),
-            onTap: () {},
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 13),
-              padding: EdgeInsets.all(2),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                  border: Border.all(
-                    color: ColorResources.COLOR_PRIMARY,
-                  )),
-              child: Text(
-                getTranslated('help', context),
-                style: rubikRegular.copyWith(
-                  color: ColorResources.COLOR_PRIMARY,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-          // PopupMenuButton<String>(
-          //   onSelected: (value) {
-          //     switch (value) {
-          //       case 'language':
-          //         Navigator.of(context).push(MaterialPageRoute(
-          //             builder: (_) =>
-          //                 ChooseLanguageScreen(fromHomeScreen: true)));
-          //     }
-          //   },
-          //   icon: Icon(
-          //     Icons.more_vert_outlined,
-          //     color: ColorResources.COLOR_PRIMARY,
-          //   ),
-          //   itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-          //     PopupMenuItem<String>(
-          //       value: 'language',
-          //       child: Row(
-          //         children: [
-          //           Icon(
-          //             Icons.language,
-          //             color: ColorResources.COLOR_PRIMARY,
-          //           ),
-          //           SizedBox(width: Dimensions.PADDING_SIZE_LARGE),
-          //           Text(
-          //             getTranslated('change_language', context),
-          //             style: Theme.of(context).textTheme.headline2.copyWith(
-          //                 color: Theme.of(context).textTheme.bodyText1.color),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ],
-          // )
-        ],
-        leading: Switch(
-          value: val,
-          onChanged: (val) {
-            setState(() {
-              val = !val;
-            });
-          },
-          activeColor: ColorResources.COLOR_WHITE,
-          activeTrackColor: ColorResources.COLOR_PRIMARY,
-          inactiveTrackColor: ColorResources.COLOR_GRAY,
-          inactiveThumbColor: ColorResources.COLOR_WHITE,
-        ),
-        // title: Consumer<ProfileProvider>(
-        //   builder: (context, profileProvider, child) =>
-        //       profileProvider.userInfoModel != null
-        //           ? Row(
-        //               children: [
-        //                 Container(
-        //                   decoration: BoxDecoration(shape: BoxShape.circle),
-        //                   child: ClipRRect(
-        //                     borderRadius: BorderRadius.circular(20),
-        //                     child: FadeInImage.assetNetwork(
-        //                       placeholder: Images.placeholder_user,
-        //                       width: 40,
-        //                       height: 40,
-        //                       fit: BoxFit.fill,
-        //                       image:
-        //                           '${Provider.of<SplashProvider>(context, listen: false).baseUrls.deliveryManImageUrl}/${profileProvider.userInfoModel.image}',
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 SizedBox(
-        //                   width: 8,
-        //                 ),
-        //                 Text(
-        //                   profileProvider.userInfoModel.fName != null
-        //                       ? '${profileProvider.userInfoModel.fName ?? ''} ${profileProvider.userInfoModel.lName ?? ''}'
-        //                       : "",
-        //                   style: Theme.of(context).textTheme.headline3.copyWith(
-        //                       fontSize: Dimensions.FONT_SIZE_LARGE,
-        //                       color:
-        //                           Theme.of(context).textTheme.bodyText1.color),
-        //                 )
-        //               ],
-        //             )
-        //           : SizedBox.shrink(),
-        // ),
-      ),
+      appBar: CustomOnlineAppBar(),
       body: Consumer<OrderProvider>(
           builder: (context, orderProvider, child) => Padding(
                 padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),

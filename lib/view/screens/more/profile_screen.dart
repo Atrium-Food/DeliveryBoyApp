@@ -16,6 +16,17 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool altNoEdit = false;
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+    myController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,22 +126,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                     Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            '0000000000',
-                            style: rubikRegular.copyWith(fontSize: 15),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          GestureDetector(
-                            child: Icon(
-                              CupertinoIcons.pencil,
+                      child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              myController.text.length == 10
+                                  ? myController.text
+                                  : '----',
+                              style: rubikRegular.copyWith(fontSize: 15),
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: 5,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  altNoEdit = !altNoEdit;
+                                });
+                              },
+                              child: Icon(
+                                CupertinoIcons.pencil,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
