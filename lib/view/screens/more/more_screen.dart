@@ -117,26 +117,26 @@ class _MoreScreenState extends State<MoreScreen> {
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: 7,
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        CupertinoIcons.map_pin_ellipse,
-                        color: Color(0xFF9A9A9A),
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        'Area: Bangalore Urban',
-                        style:
-                            TextStyle(color: Color(0xFF9A9A9A), fontSize: 10),
-                      )
-                    ],
-                  ),
+                  // SizedBox(
+                  //   height: 7,
+                  // ),
+                  // Row(
+                  //   children: [
+                  //     Icon(
+                  //       CupertinoIcons.map_pin_ellipse,
+                  //       color: Color(0xFF9A9A9A),
+                  //       size: 15,
+                  //     ),
+                  //     SizedBox(
+                  //       width: 5,
+                  //     ),
+                  //     Text(
+                  //       'Area: Bangalore Urban',
+                  //       style:
+                  //           TextStyle(color: Color(0xFF9A9A9A), fontSize: 10),
+                  //     )
+                  //   ],
+                  // ),
                   Container(
                     padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
                     child: Column(

@@ -42,9 +42,17 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     // requestPermission();
 
     // RestaurantLocationCoverage coverage = Provider.of<SplashProvider>(context, listen: false).configModel.restaurantLocationCoverage;
-    // _deliveryBoyLatLng = LatLng(Provider.of<LocationProvider>(context,listen: false).currentLocation.latitude ?? 0,Provider.of<LocationProvider>(context,listen: false).currentLocation.longitude ?? 0);
+    _deliveryBoyLatLng = LatLng(
+        Provider.of<LocationProvider>(context, listen: false)
+                .currentLocation
+                .latitude ??
+            0,
+        Provider.of<LocationProvider>(context, listen: false)
+                .currentLocation
+                .longitude ??
+            0);
 
-    _deliveryBoyLatLng = LatLng(23.8513, 90.4133);
+    // _deliveryBoyLatLng = LatLng(23.8513, 90.4133);
     // _addressLatLng = LatLng(19.228825, 72.854118);
 
     // _restaurantLatLng = LatLng(Provider.of<SplashProvider>(context,listen: false).configModel., longitude)
@@ -52,7 +60,7 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     // _addressLatLng = widget.addressModel != null ? LatLng(double.parse(widget.addressModel.latitude), double.parse(widget.addressModel.longitude)) : LatLng(0,0);
     // _restaurantLatLng = LatLng(double.parse(coverage.latitude), double.parse(coverage.longitude));
 
-    Provider.of<OrderProvider>(context, listen: false).refresh(context);
+    // Provider.of<OrderProvider>(context, listen: false).refresh(context);
   }
   // Future<void> requestPermission() async { await Permission.location.request(); }
 
