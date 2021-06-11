@@ -171,13 +171,8 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
         in Provider.of<OrderProvider>(context, listen: false).currentOrders) {
       _markers.add(Marker(
         markerId: MarkerId(order.id.toString()),
-        position: LatLng(
-            order.deliveryAddress.latitude != null
-                ? double.parse(order.deliveryAddress.latitude)
-                : 26.912434,
-            order.deliveryAddress.longitude != null
-                ? double.parse(order.deliveryAddress.longitude)
-                : 75.787270),
+        position: LatLng(double.parse(order.deliveryAddress.latitude),
+            double.parse(order.deliveryAddress.longitude)),
         infoWindow: InfoWindow(
           title: order.customer.phone,
           snippet:
