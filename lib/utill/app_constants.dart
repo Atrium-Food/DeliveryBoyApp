@@ -2,8 +2,8 @@ import 'package:resturant_delivery_boy/data/model/response/language_model.dart';
 import 'package:resturant_delivery_boy/utill/images.dart';
 
 class AppConstants {
-  static const String BASE_URL = 'https://demo.6amtech.com/restaurant';
-  // static const String BASE_URL = 'http://3.108.112.158/';
+  // static const String BASE_URL = 'https://demo.6amtech.com/restaurant';
+  static const String BASE_URL = 'http://3.108.112.158/';
   static const String PROFILE_URI = '/api/v1/delivery-man/profile?token=';
   static const String CONFIG_URI = '/api/v1/config';
   static const String LOGIN_URI = '/api/v1/auth/delivery-man/login';

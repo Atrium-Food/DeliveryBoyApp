@@ -72,28 +72,28 @@ class _MoreScreenState extends State<MoreScreen> {
                             )
                           ],
                         ),
-                        Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(
-                                  Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                              decoration: BoxDecoration(
-                                color: Color(0xFF9A9A9A).withOpacity(0.2),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                              ),
-                              child: Text(
-                                '4.8 ${Emojis.star}',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: ColorResources.COLOR_GREY,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ))
+                        // Expanded(
+                        //     child: Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     Container(
+                        //       padding: EdgeInsets.all(
+                        //           Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        //       decoration: BoxDecoration(
+                        //         color: Color(0xFF9A9A9A).withOpacity(0.2),
+                        //         borderRadius:
+                        //             BorderRadius.all(Radius.circular(15)),
+                        //       ),
+                        //       child: Text(
+                        //         '4.8 ${Emojis.star}',
+                        //         style: TextStyle(
+                        //           fontSize: 15,
+                        //           color: ColorResources.COLOR_GREY,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ))
                       ],
                     ),
                   ),
@@ -157,43 +157,43 @@ class _MoreScreenState extends State<MoreScreen> {
                           ],
                         ),
                         SizedBox(height: 20),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfileScreen()));
-                          },
-                          child: _userInfoWidget(
-                              context: context, text: 'Manage Profile'),
-                        ),
-                        SizedBox(height: 15),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RatingsScreen()));
-                            },
-                            child: _userInfoWidget(
-                                context: context, text: 'Ratings')),
-                        SizedBox(height: 15),
-                        _userInfoWidget(context: context, text: 'Benefits'),
-                        SizedBox(height: 20),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+                        //             builder: (context) => ProfileScreen()));
+                        //   },
+                        //   child: _userInfoWidget(
+                        //       context: context, text: 'Manage Profile'),
+                        // ),
+                        // SizedBox(height: 15),
                         // GestureDetector(
                         //     onTap: () {
                         //       Navigator.push(
                         //           context,
                         //           MaterialPageRoute(
-                        //               builder: (context) =>
-                        //                   OrderHistoryScreen()));
+                        //               builder: (context) => RatingsScreen()));
                         //     },
                         //     child: _userInfoWidget(
-                        //         context: context, text: 'History')),
+                        //         context: context, text: 'Ratings')),
+                        // SizedBox(height: 15),
+                        // _userInfoWidget(context: context, text: 'Benefits'),
                         // SizedBox(height: 20),
-                        _userInfoWidget(
-                            context: context, text: 'Contact Support'),
-                        SizedBox(height: 20),
+                        // // GestureDetector(
+                        // //     onTap: () {
+                        // //       Navigator.push(
+                        // //           context,
+                        // //           MaterialPageRoute(
+                        // //               builder: (context) =>
+                        // //                   OrderHistoryScreen()));
+                        // //     },
+                        // //     child: _userInfoWidget(
+                        // //         context: context, text: 'History')),
+                        // // SizedBox(height: 20),
+                        // _userInfoWidget(
+                        //     context: context, text: 'Contact Support'),
+                        // SizedBox(height: 20),
                         InkWell(
                             onTap: () {
                               Provider.of<AuthProvider>(context, listen: false)

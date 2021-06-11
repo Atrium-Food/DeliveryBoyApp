@@ -91,29 +91,29 @@ class OrderHistoryScreen extends StatelessWidget {
                                   SizedBox(
                                     height: 20.0,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Login hours',
-                                        style: rubikRegular.copyWith(
-                                          fontSize: 15,
-                                          color: Color(0xFFC4C4C4),
-                                        ),
-                                      ),
-                                      Text(
-                                        '9.6',
-                                        style: rubikRegular.copyWith(
-                                          fontSize: 15,
-                                          color: Color(0xFFC4C4C4),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 20.0,
-                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceBetween,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Login hours',
+                                  //       style: rubikRegular.copyWith(
+                                  //         fontSize: 15,
+                                  //         color: Color(0xFFC4C4C4),
+                                  //       ),
+                                  //     ),
+                                  //     Text(
+                                  //       '9.6',
+                                  //       style: rubikRegular.copyWith(
+                                  //         fontSize: 15,
+                                  //         color: Color(0xFFC4C4C4),
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 20.0,
+                                  // ),
                                   Text(
                                     'Order History',
                                     style: Theme.of(context)

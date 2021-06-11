@@ -91,32 +91,32 @@ class CustomOnlineAppBar extends StatelessWidget
                         orderProvider.refresh(context);
                       }),
         ),
-        IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.notifications),
-          color: Theme.of(context).primaryColor,
-        ),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 13),
-            padding: EdgeInsets.all(2),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.all(Radius.circular(2.0)),
-                border: Border.all(
-                  color: ColorResources.COLOR_PRIMARY,
-                )),
-            child: Text(
-              getTranslated('help', context),
-              style: rubikRegular.copyWith(
-                color: ColorResources.COLOR_PRIMARY,
-                fontSize: 12,
-              ),
-            ),
-          ),
-        ),
+        // IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.notifications),
+        //   color: Theme.of(context).primaryColor,
+        // ),
+        // InkWell(
+        //   onTap: () {},
+        //   child: Container(
+        //     margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 13),
+        //     padding: EdgeInsets.all(2),
+        //     alignment: Alignment.center,
+        //     decoration: BoxDecoration(
+        //         color: Colors.transparent,
+        //         borderRadius: BorderRadius.all(Radius.circular(2.0)),
+        //         border: Border.all(
+        //           color: ColorResources.COLOR_PRIMARY,
+        //         )),
+        //     child: Text(
+        //       getTranslated('help', context),
+        //       style: rubikRegular.copyWith(
+        //         color: ColorResources.COLOR_PRIMARY,
+        //         fontSize: 12,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
