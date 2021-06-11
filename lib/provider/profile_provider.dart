@@ -28,4 +28,8 @@ class ProfileProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  updateUserInfo(BuildContext context) async {
+    ApiResponse apiResponse = await profileRepo.updateUserInfo();
+  }
 }

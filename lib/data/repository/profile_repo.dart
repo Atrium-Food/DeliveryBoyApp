@@ -19,4 +19,8 @@ class ProfileRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> updateUserInfo() async {
+
+  }
 }

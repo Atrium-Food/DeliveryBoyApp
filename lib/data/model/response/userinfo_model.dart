@@ -18,6 +18,7 @@ class UserInfoModel {
   String dlExp;
   double rating;
   int runs;
+  Bank bank;
 
   UserInfoModel(
       {this.id,
@@ -38,7 +39,8 @@ class UserInfoModel {
       this.createdAt,
       this.updatedAt,
       this.authToken,
-      this.runs});
+      this.runs,
+      this.bank});
 
   UserInfoModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,6 +62,9 @@ class UserInfoModel {
     dlExp = json['dlExp'];
     rating = json['rating'];
     runs = json['runs'];
+    if (json['bank'] != null) {
+      bank = Bank.fromJson(json['bank']);
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -83,6 +88,34 @@ class UserInfoModel {
     data['dlExp'] = this.dlExp;
     data['rating'] = this.rating;
     data['runs'] = this.runs;
+
+    if (this.bank != null) {
+      data['bank'] = this.bank.toJson();
+    }
+
+    return data;
+  }
+}
+
+class Bank {
+  String name;
+  String account;
+  String ifsc;
+
+  Bank({this.name, this.account, this.ifsc});
+
+  Bank.fromJson(Map<String, dynamic> json) {
+    this.name = json['bank_name'];
+    this.account = json['account_number'];
+    this.ifsc = json['ifsc'];
+  }
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> data = new Map<String, dynamic>();
+
+    data['bank_name'] = this.name;
+    data['account_number'] = this.account;
+    data['ifsc'] = this.ifsc;
 
     return data;
   }
