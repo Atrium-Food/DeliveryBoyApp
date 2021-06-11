@@ -17,7 +17,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -26,10 +25,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() {
-
     Provider.of<AuthProvider>(context, listen: false).checkConnected();
     Provider.of<SplashProvider>(context, listen: false).initSharedData();
-    Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
+    Provider.of<SplashProvider>(context, listen: false)
+        .initConfig(context)
+        .then((bool isSuccess) {
       if (isSuccess) {
         Timer(Duration(seconds: 1), () async {
           if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
@@ -38,7 +38,6 @@ class _SplashScreenState extends State<SplashScreen> {
           } else {
             _checkPermission(LoginScreen());
           }
-
         });
       }
     });
@@ -46,27 +45,34 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkPermission(Widget navigateTo) async {
     LocationPermission permission = await Geolocator.checkPermission();
-    if(permission == LocationPermission.denied) {
+    if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
-    if(permission == LocationPermission.denied) {
-      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
-        title: Text(getTranslated('alert', context)),
-        content: Text(getTranslated('allow_for_all_time', context)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        actions: [ElevatedButton(
-          onPressed: () async {
-            Navigator.pop(context);
-            await Geolocator.requestPermission();
-            _checkPermission(navigateTo);
-          },
-          child: Text(getTranslated('ok', context)),
-        )],
-      ));
-    }else if(permission == LocationPermission.deniedForever) {
+    if (permission == LocationPermission.denied) {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => AlertDialog(
+                title: Text(getTranslated('alert', context)),
+                content: Text(getTranslated('allow_for_all_time', context)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                actions: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      Navigator.pop(context);
+                      await Geolocator.requestPermission();
+                      _checkPermission(navigateTo);
+                    },
+                    child: Text(getTranslated('ok', context)),
+                  )
+                ],
+              ));
+    } else if (permission == LocationPermission.deniedForever) {
       await Geolocator.openLocationSettings();
-    }else {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => navigateTo));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => navigateTo));
     }
   }
 
@@ -78,9 +84,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(Images.efood_bike, height: 165),
-            SizedBox(height: 45),
-            Image.asset(Images.efood, height: 33,color: Theme.of(context).primaryColor,),
+            Image.asset(Images.kiwis_delivery_partner, height: 165),
+            // SizedBox(height: 45),
+            // Image.asset(Images.efood, height: 33,color: Theme.of(context).primaryColor,),
           ],
         ),
       ),
