@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
       _locals.add(Locale(language.languageCode, language.countryCode));
     });
     return MaterialApp(
-      title: 'Restaurant Delivery Boy',
+      title: 'Kiwis Delivery',
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).darkTheme ? dark : light,
       locale: Provider.of<LocalizationProvider>(context).locale,
