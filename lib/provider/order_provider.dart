@@ -50,6 +50,7 @@ class OrderProvider with ChangeNotifier {
     _orderDetails = null;
     ApiResponse apiResponse = await orderRepo.getOrderDetails(orderID: orderID);
     if (apiResponse.response != null &&
+        apiResponse.response.data != null &&
         apiResponse.response.statusCode == 200) {
       _orderDetails = [];
       apiResponse.response.data.forEach((orderDetail) =>

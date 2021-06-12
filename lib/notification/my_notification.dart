@@ -18,7 +18,7 @@ class MyNotification {
   static Future<void> showNotification(Map<String, dynamic> message, FlutterLocalNotificationsPlugin fln) async {
     if(message['image'] != null && message['image'].isNotEmpty) {
       try{
-        await showBigPictureNotificationHiddenLargeIcon(message, fln);
+      git  await showBigPictureNotificationHiddenLargeIcon(message, fln);
       }catch(e) {
         await showBigTextNotification(message, fln);
       }
