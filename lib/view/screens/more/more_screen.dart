@@ -129,7 +129,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   //     ),
                   //     SizedBox(
                   //       width: 5,
-                  //     ),
+                  //     ),g
                   //     Text(
                   //       'Area: Bangalore Urban',
                   //       style:

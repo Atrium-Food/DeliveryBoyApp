@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resturant_delivery_boy/helper/email_checker.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
@@ -61,9 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 //SizedBox(height: 30),
                 Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     Images.kiwis_delivery_partner,
-                    height: MediaQuery.of(context).size.height / 4.5,
+                    height: MediaQuery.of(context).size.height / 3,
                     fit: BoxFit.scaleDown,
                     matchTextDirection: true,
                   ),

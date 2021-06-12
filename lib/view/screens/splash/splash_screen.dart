@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
@@ -84,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(Images.kiwis_delivery_partner, height: 165),
+            SvgPicture.asset(Images.kiwis_delivery_partner, height: 165),
             // SizedBox(height: 45),
             // Image.asset(Images.efood, height: 33,color: Theme.of(context).primaryColor,),
           ],

@@ -51,6 +51,7 @@ dependencies:
   charts_flutter: ^0.10.0
   intl: ^0.17.0
   razorpay_flutter: ^1.2.6
+  flutter_svg: ^0.22.0
 
 
 dev_dependencies:
