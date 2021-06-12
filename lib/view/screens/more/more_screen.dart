@@ -48,7 +48,7 @@ class _MoreScreenState extends State<MoreScreen> {
                         CircleAvatar(
                           radius: 30,
                           backgroundImage:
-                              NetworkImage(profileProvider.userInfoModel.image),
+                          profileProvider.userInfoModel?.image!=null? NetworkImage(profileProvider.userInfoModel.image) : AssetImage(Images.placeholder_user),
                         ),
                         SizedBox(
                           width: 5,

@@ -93,7 +93,6 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
               markers: _markers,
               polylines: _polylines,
               onMapCreated: (GoogleMapController controller) {
-                print(controller.channel.name);
                 _controller = controller;
                 _isLoading = false;
                 setMarker();
