@@ -219,6 +219,11 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
           title: order.customer.phone,
           snippet:
               '${order.deliveryAddress.latitude != null ? order.deliveryAddress.latitude : 26.912434}, ${order.deliveryAddress.longitude != null ? order.deliveryAddress.longitude : 75.787270}',
+        onTap: (){
+          _addressLatLng=  LatLng(double.parse(order.deliveryAddress.latitude),
+              double.parse(order.deliveryAddress.longitude));
+          print(_addressLatLng);
+        },
         ),
         icon: BitmapDescriptor.fromBytes(addressImageData),
       ));
