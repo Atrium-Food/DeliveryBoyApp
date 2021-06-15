@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 //SizedBox(height: 30),
                 Padding(
                   padding: EdgeInsets.all(15.0),
-                  child: SvgPicture.asset(
+                  child: Image.asset(
                     Images.kiwis_delivery_partner,
                     height: MediaQuery.of(context).size.height / 3,
                     fit: BoxFit.scaleDown,
