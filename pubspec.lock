@@ -29,6 +29,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  charts_common:
+    dependency: transitive
+    description:
+      name: charts_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
+  charts_flutter:
+    dependency: "direct main"
+    description:
+      name: charts_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
   clock:
     dependency: transitive
     description:
@@ -43,6 +57,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  connectivity:
+    dependency: "direct main"
+    description:
+      name: connectivity
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.6"
+  connectivity_for_web:
+    dependency: transitive
+    description:
+      name: connectivity_for_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
+  connectivity_macos:
+    dependency: transitive
+    description:
+      name: connectivity_macos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
+  connectivity_platform_interface:
+    dependency: transitive
+    description:
+      name: connectivity_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -57,6 +99,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0-prev3"
+  emojis:
+    dependency: "direct main"
+    description:
+      name: emojis
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.3"
+  eventify:
+    dependency: transitive
+    description:
+      name: eventify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -151,6 +207,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_rating_bar:
+    dependency: "direct main"
+    description:
+      name: flutter_rating_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.22.0"
+  flutter_switch:
+    dependency: "direct main"
+    description:
+      name: flutter_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -161,6 +238,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_xlider:
+    dependency: "direct main"
+    description:
+      name: flutter_xlider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.4.0"
   geocoding:
     dependency: "direct main"
     description:
@@ -202,7 +286,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "7.1.3"
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -225,7 +309,7 @@ packages:
     source: hosted
     version: "4.0.0"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       url: "https://pub.dartlang.org"
@@ -238,6 +322,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   matcher:
     dependency: transitive
     description:
@@ -266,6 +357,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   path_provider:
     dependency: "direct main"
     description:
@@ -301,6 +406,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   platform:
     dependency: transitive
     description:
@@ -329,6 +441,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
+  razorpay_flutter:
+    dependency: "direct main"
+    description:
+      name: razorpay_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.6"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -523,6 +642,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.2"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.22.0"
+  flutter: ">=1.24.0-7.0"

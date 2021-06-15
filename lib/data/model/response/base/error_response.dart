@@ -11,11 +11,17 @@ class ErrorResponse {
 }
 
   ErrorResponse.fromJson(dynamic json) {
-    if (json["errors"] != null) {
+    if (json is Map && json["errors"] != null) {
       _errors = [];
-      json["errors"].forEach((v) {
-        _errors.add(Errors.fromJson(v));
-      });
+
+      if (json["errors"] is String)
+        print(json["errors"]);
+      else {
+        if (json["errors"] is List)
+          json["errors"].forEach((v) {
+            _errors.add(Errors.fromJson(v));
+          });
+      }
     }
   }
 

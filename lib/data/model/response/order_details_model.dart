@@ -19,20 +19,20 @@ class OrderDetailsModel {
 
   OrderDetailsModel(
       {int id,
-        int productId,
-        int orderId,
-        double price,
-        ProductDetails productDetails,
-        List<Variation> variation,
-        double discountOnProduct,
-        String discountType,
-        int quantity,
-        double taxAmount,
-        String createdAt,
-        String updatedAt,
-        List<int> addOnIds,
-        List<int> addOnQtys,
-        String variant}) {
+      int productId,
+      int orderId,
+      double price,
+      ProductDetails productDetails,
+      List<Variation> variation,
+      double discountOnProduct,
+      String discountType,
+      int quantity,
+      double taxAmount,
+      String createdAt,
+      String updatedAt,
+      List<int> addOnIds,
+      List<int> addOnQtys,
+      String variant}) {
     this._id = id;
     this._productId = productId;
     this._orderId = orderId;
@@ -70,7 +70,7 @@ class OrderDetailsModel {
     _id = json['id'];
     _productId = json['product_id'];
     _orderId = json['order_id'];
-    _price = json['price'].toDouble();
+    _price = json['price']?.toDouble();
     _productDetails = json['product_details'] != null
         ? new ProductDetails.fromJson(json['product_details'])
         : null;
@@ -80,14 +80,14 @@ class OrderDetailsModel {
         _variation.add(new Variation.fromJson(v));
       });
     }
-    _discountOnProduct = json['discount_on_product'].toDouble();
+    _discountOnProduct = json['discount_on_product']?.toDouble();
     _discountType = json['discount_type'];
     _quantity = json['quantity'];
-    _taxAmount = json['tax_amount'].toDouble();
+    _taxAmount = json['tax_amount']?.toDouble();
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _addOnIds = json['add_on_ids'].cast<int>();
-    _addOnQtys = json['add_on_qtys'].cast<int>();
+    _addOnIds = json['add_on_ids']?.cast<int>();
+    _addOnQtys = json['add_on_qtys']?.cast<int>();
     _variant = json['variant'];
   }
 
@@ -140,25 +140,25 @@ class ProductDetails {
 
   ProductDetails(
       {int id,
-        String name,
-        String description,
-        String image,
-        double price,
-        List<Variations> variations,
-        List<AddOns> addOns,
-        double tax,
-        String availableTimeStarts,
-        String availableTimeEnds,
-        int status,
-        String createdAt,
-        String updatedAt,
-        List<String> attributes,
-        List<CategoryIds> categoryIds,
-        List<ChoiceOptions> choiceOptions,
-        double discount,
-        String discountType,
-        String taxType,
-        int setMenu}) {
+      String name,
+      String description,
+      String image,
+      double price,
+      List<Variations> variations,
+      List<AddOns> addOns,
+      double tax,
+      String availableTimeStarts,
+      String availableTimeEnds,
+      int status,
+      String createdAt,
+      String updatedAt,
+      List<String> attributes,
+      List<CategoryIds> categoryIds,
+      List<ChoiceOptions> choiceOptions,
+      double discount,
+      String discountType,
+      String taxType,
+      int setMenu}) {
     this._id = id;
     this._name = name;
     this._description = description;
@@ -207,7 +207,7 @@ class ProductDetails {
     _name = json['name'];
     _description = json['description'];
     _image = json['image'];
-    _price = json['price'].toDouble();
+    _price = json['price']?.toDouble();
     if (json['variations'] != null) {
       _variations = [];
       json['variations'].forEach((v) {
@@ -220,13 +220,13 @@ class ProductDetails {
         _addOns.add(new AddOns.fromJson(v));
       });
     }
-    _tax = json['tax'].toDouble();
+    _tax = json['tax']?.toDouble();
     _availableTimeStarts = json['available_time_starts'];
     _availableTimeEnds = json['available_time_ends'];
     _status = json['status'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _attributes = json['attributes'].cast<String>();
+    _attributes = json['attributes']?.cast<String>();
     if (json['category_ids'] != null) {
       _categoryIds = [];
       json['category_ids'].forEach((v) {
@@ -239,7 +239,7 @@ class ProductDetails {
         _choiceOptions.add(new ChoiceOptions.fromJson(v));
       });
     }
-    _discount = json['discount'].toDouble();
+    _discount = json['discount']?.toDouble();
     _discountType = json['discount_type'];
     _taxType = json['tax_type'];
     _setMenu = json['set_menu'];
@@ -294,7 +294,7 @@ class Variations {
 
   Variations.fromJson(Map<String, dynamic> json) {
     _type = json['type'];
-    _price = json['price'].toDouble();
+    _price = json['price']?.toDouble();
   }
 
   Map<String, dynamic> toJson() {
@@ -330,7 +330,7 @@ class AddOns {
   AddOns.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
     _name = json['name'];
-    _price = json['price'].toDouble();
+    _price = json['price']?.toDouble();
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
   }
@@ -359,7 +359,7 @@ class CategoryIds {
   int get position => _position;
 
   CategoryIds.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = json['id'].toString();
     _position = json['position'];
   }
 

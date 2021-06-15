@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ColorResources {
-  static const Color COLOR_PRIMARY = Color(0xFFFC6A57);
+  static const Color COLOR_PRIMARY = Color(0xFF00B37B);
+  // Color(0xFFFC6A57);
   static const Color COLOR_GREY = Color(0xFFA0A4A8);
   static const Color COLOR_BLACK = Color(0xFF000000);
   static const Color COLOR_NERO = Color(0xFF1F1F1F);
@@ -18,6 +19,7 @@ class ColorResources {
   static const Color COLOR_GREY_CHATEAU = Color(0xffA0A4A8);
   static const Color BORDER_COLOR = Color(0xFFDCDCDC);
   static const Color DISABLE_COLOR = Color(0xFF979797);
+  static const Color PRIMARY_DARK = Color(0xFF007A54);
 
   static const Map<int, Color> colorMap = {
     50: Color(0x10192D6B),
@@ -31,5 +33,4 @@ class ColorResources {
     800: Color(0x90192D6B),
     900: Color(0xff192D6B),
   };
-
 }

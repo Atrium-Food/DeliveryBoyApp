@@ -23,8 +23,20 @@ class LocationProvider with ChangeNotifier {
 
   void getUserLocation() async {
     _currentLocation = await locateUser();
-    var currentAddresses = await placemarkFromCoordinates(_currentLocation.latitude, _currentLocation.longitude);
-    _address = currentAddresses.first;
+    print("Delivery Person LAT LONG:  (${_currentLocation.latitude},${_currentLocation.longitude})");
+    try {
+      var currentAddresses = await placemarkFromCoordinates(
+          _currentLocation.latitude, _currentLocation.longitude);
+      // // _currentLocation.latitude, _currentLocation.longitude
+      // Coordinates coordinates= Coordinates(_currentLocation.latitude, _currentLocation.longitude);
+      // var currentAddresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+     notifyListeners();
+      _address = currentAddresses.first;
+    } on Exception catch(e){
+      print("$e Address can't be found");
+      _address=null;
+    }
+    print("longitude"+_currentLocation.longitude.toString());
     notifyListeners();
   }
 }

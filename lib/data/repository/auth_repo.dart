@@ -54,6 +54,8 @@ class AuthRepo {
       }else {
         _deviceToken = await _saveDeviceToken();
       }
+      print("Got the fcm_token: $_deviceToken");
+      // print(AppConstants.TOKEN_URI);
       Response response = await dioClient.post(
         AppConstants.TOKEN_URI,
         data: {"_method": "put", "fcm_token": _deviceToken, "token": sharedPreferences.get(AppConstants.TOKEN)},

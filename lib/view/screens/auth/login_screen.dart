@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:resturant_delivery_boy/helper/email_checker.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
@@ -31,8 +32,12 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
 
-    _emailController.text = Provider.of<AuthProvider>(context, listen: false).getUserEmail() ?? null;
-    _passwordController.text = Provider.of<AuthProvider>(context, listen: false).getUserPassword() ?? null;
+    _emailController.text =
+        Provider.of<AuthProvider>(context, listen: false).getUserEmail() ??
+            null;
+    _passwordController.text =
+        Provider.of<AuthProvider>(context, listen: false).getUserPassword() ??
+            null;
   }
 
   @override
@@ -58,8 +63,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.all(15.0),
                   child: Image.asset(
-                    Images.efood_bike_with_person,
-                    height: MediaQuery.of(context).size.height / 4.5,
+                    Images.kiwis_delivery_partner,
+                    height: MediaQuery.of(context).size.height / 3,
                     fit: BoxFit.scaleDown,
                     matchTextDirection: true,
                   ),
@@ -68,12 +73,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                     child: Text(
                   getTranslated('login', context),
-                  style: Theme.of(context).textTheme.headline3.copyWith(fontSize: 24, color: Theme.of(context).hintColor),
+                  style: Theme.of(context).textTheme.headline3.copyWith(
+                      fontSize: 24, color: Theme.of(context).hintColor),
                 )),
                 SizedBox(height: 35),
                 Text(
                   getTranslated('email_address', context),
-                  style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).accentColor),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      .copyWith(color: Theme.of(context).accentColor),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 CustomTextField(
@@ -87,7 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                 Text(
                   getTranslated('password', context),
-                  style: Theme.of(context).textTheme.headline2.copyWith(color: Theme.of(context).accentColor),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2
+                      .copyWith(color: Theme.of(context).accentColor),
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 CustomTextField(
@@ -116,21 +128,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                     width: 18,
                                     height: 18,
                                     decoration: BoxDecoration(
-                                        color: authProvider.isActiveRememberMe ? Theme.of(context).primaryColor : ColorResources.COLOR_WHITE,
-                                        border:
-                                            Border.all(color: authProvider.isActiveRememberMe ? Colors.transparent : Theme.of(context).accentColor),
+                                        color: authProvider.isActiveRememberMe
+                                            ? Theme.of(context).primaryColor
+                                            : ColorResources.COLOR_WHITE,
+                                        border: Border.all(
+                                            color:
+                                                authProvider.isActiveRememberMe
+                                                    ? Colors.transparent
+                                                    : Theme.of(context)
+                                                        .accentColor),
                                         borderRadius: BorderRadius.circular(3)),
                                     child: authProvider.isActiveRememberMe
-                                        ? Icon(Icons.done, color: ColorResources.COLOR_WHITE, size: 17)
+                                        ? Icon(Icons.done,
+                                            color: ColorResources.COLOR_WHITE,
+                                            size: 17)
                                         : SizedBox.shrink(),
                                   ),
-                                  SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                                  SizedBox(
+                                      width: Dimensions.PADDING_SIZE_SMALL),
                                   Text(
                                     getTranslated('remember_me', context),
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline2
-                                        .copyWith(fontSize: Dimensions.FONT_SIZE_EXTRA_SMALL, color: Theme.of(context).accentColor),
+                                        .copyWith(
+                                            fontSize: Dimensions
+                                                .FONT_SIZE_EXTRA_SMALL,
+                                            color:
+                                                Theme.of(context).accentColor),
                                   )
                                 ],
                               ),
@@ -143,7 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     authProvider.loginErrorMessage.length > 0
-                        ? CircleAvatar(backgroundColor: Theme.of(context).primaryColor, radius: 5)
+                        ? CircleAvatar(
+                            backgroundColor: Theme.of(context).primaryColor,
+                            radius: 5)
                         : SizedBox.shrink(),
                     SizedBox(width: 8),
                     Expanded(
@@ -167,22 +194,36 @@ class _LoginScreenState extends State<LoginScreen> {
                           String _email = _emailController.text.trim();
                           String _password = _passwordController.text.trim();
                           if (_email.isEmpty) {
-                            showCustomSnackBar(getTranslated('enter_email_address', context), context);
-                          }else if (EmailChecker.isNotValid(_email)) {
-                            showCustomSnackBar(getTranslated('enter_valid_email', context), context);
-                          }else if (_password.isEmpty) {
-                            showCustomSnackBar(getTranslated('enter_password', context), context);
-                          }else if (_password.length < 6) {
-                            showCustomSnackBar(getTranslated('password_should_be', context), context);
-                          }else {
-                            authProvider.login(emailAddress: _email, password: _password).then((status) async {
+                            showCustomSnackBar(
+                                getTranslated('enter_email_address', context),
+                                context);
+                          } else if (EmailChecker.isNotValid(_email)) {
+                            showCustomSnackBar(
+                                getTranslated('enter_valid_email', context),
+                                context);
+                          } else if (_password.isEmpty) {
+                            showCustomSnackBar(
+                                getTranslated('enter_password', context),
+                                context);
+                          } else if (_password.length < 6) {
+                            showCustomSnackBar(
+                                getTranslated('password_should_be', context),
+                                context);
+                          } else {
+                            authProvider
+                                .login(
+                                    emailAddress: _email, password: _password)
+                                .then((status) async {
                               if (status.isSuccess) {
                                 if (authProvider.isActiveRememberMe) {
-                                  authProvider.saveUserNumberAndPassword(_email, _password);
+                                  authProvider.saveUserNumberAndPassword(
+                                      _email, _password);
                                 } else {
                                   authProvider.clearUserEmailAndPassword();
                                 }
-                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => DashboardScreen()));
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (_) => DashboardScreen()));
                               }
                             });
                           }
@@ -190,7 +231,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     : Center(
                         child: CircularProgressIndicator(
-                        valueColor: new AlwaysStoppedAnimation<Color>(ColorResources.COLOR_PRIMARY),
+                        valueColor: new AlwaysStoppedAnimation<Color>(
+                            ColorResources.COLOR_PRIMARY),
                       )),
               ],
             ),

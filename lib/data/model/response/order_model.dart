@@ -1,3 +1,5 @@
+import 'package:resturant_delivery_boy/data/model/body/review_body_model.dart';
+
 class OrderModel {
   int id;
   int userId;
@@ -18,27 +20,29 @@ class OrderModel {
   DeliveryAddress deliveryAddress;
   Customer customer;
   String orderType;
+  ReviewBody reviewBody;
 
   OrderModel(
       {this.id,
-        this.userId,
-        this.orderAmount,
-        this.couponDiscountAmount,
-        this.couponDiscountTitle,
-        this.paymentStatus,
-        this.orderStatus,
-        this.totalTaxAmount,
-        this.paymentMethod,
-        this.transactionReference,
-        this.deliveryAddressId,
-        this.createdAt,
-        this.updatedAt,
-        this.deliveryManId,
-        this.deliveryCharge,
-        this.orderNote,
-        this.deliveryAddress,
-        this.customer,
-        this.orderType});
+      this.userId,
+      this.orderAmount,
+      this.couponDiscountAmount,
+      this.couponDiscountTitle,
+      this.paymentStatus,
+      this.orderStatus,
+      this.totalTaxAmount,
+      this.paymentMethod,
+      this.transactionReference,
+      this.deliveryAddressId,
+      this.createdAt,
+      this.updatedAt,
+      this.deliveryManId,
+      this.deliveryCharge,
+      this.orderNote,
+      this.deliveryAddress,
+      this.customer,
+      this.reviewBody,
+      this.orderType});
 
   OrderModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -64,6 +68,9 @@ class OrderModel {
         ? new Customer.fromJson(json['customer'])
         : null;
     orderType = json['order_type'];
+    reviewBody = json['reviewBody'] != null
+        ? new ReviewBody.fromJson(json['reviewBody'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -90,6 +97,11 @@ class OrderModel {
     if (this.customer != null) {
       data['customer'] = this.customer.toJson();
     }
+
+    if (this.reviewBody != null) {
+      data['reviewBody'] = this.reviewBody.toJson();
+    }
+
     data['order_type'] = this.orderType;
     return data;
   }
@@ -109,15 +121,15 @@ class DeliveryAddress {
 
   DeliveryAddress(
       {this.id,
-        this.addressType,
-        this.contactPersonNumber,
-        this.address,
-        this.latitude,
-        this.longitude,
-        this.createdAt,
-        this.updatedAt,
-        this.userId,
-        this.contactPersonName});
+      this.addressType,
+      this.contactPersonNumber,
+      this.address,
+      this.latitude,
+      this.longitude,
+      this.createdAt,
+      this.updatedAt,
+      this.userId,
+      this.contactPersonName});
 
   DeliveryAddress.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -164,17 +176,17 @@ class Customer {
 
   Customer(
       {this.id,
-        this.fName,
-        this.lName,
-        this.email,
-        this.image,
-        this.isPhoneVerified,
-        this.emailVerifiedAt,
-        this.createdAt,
-        this.updatedAt,
-        this.emailVerificationToken,
-        this.phone,
-        this.cmFirebaseToken});
+      this.fName,
+      this.lName,
+      this.email,
+      this.image,
+      this.isPhoneVerified,
+      this.emailVerifiedAt,
+      this.createdAt,
+      this.updatedAt,
+      this.emailVerificationToken,
+      this.phone,
+      this.cmFirebaseToken});
 
   Customer.fromJson(Map<String, dynamic> json) {
     id = json['id'];

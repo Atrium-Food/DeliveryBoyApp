@@ -6,6 +6,7 @@ import 'package:resturant_delivery_boy/data/model/response/base/api_response.dar
 import 'package:resturant_delivery_boy/data/model/response/base/error_response.dart';
 import 'package:resturant_delivery_boy/data/model/response/response_model.dart';
 import 'package:resturant_delivery_boy/data/repository/tracker_repo.dart';
+import 'package:resturant_delivery_boy/utill/app_constants.dart';
 
 class TrackerProvider extends ChangeNotifier {
   final TrackerRepo trackerRepo;
@@ -45,8 +46,10 @@ class TrackerProvider extends ChangeNotifier {
       if (_startTrack) {
         ApiResponse apiResponse = await trackerRepo.addHistory(trackBody);
         if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
+          print("Updated track ${trackBody.toJson()}");
           responseModel = ResponseModel(true, 'Successfully start track');
         } else {
+          print("Couldn't update track ${trackBody.toJson()}");
           String errorMessage;
           if (apiResponse.error is String) {
             print(apiResponse.error.toString());
