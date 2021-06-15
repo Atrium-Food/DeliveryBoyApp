@@ -42,15 +42,17 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     // requestPermission();
 
     // RestaurantLocationCoverage coverage = Provider.of<SplashProvider>(context, listen: false).configModel.restaurantLocationCoverage;
-    _deliveryBoyLatLng = LatLng(
-        Provider.of<LocationProvider>(context, listen: false)
-                .currentLocation
-                .latitude ??
-            0,
-        Provider.of<LocationProvider>(context, listen: false)
-                .currentLocation
-                .longitude ??
-            0);
+    // _deliveryBoyLatLng = LatLng(
+    //     Provider.of<LocationProvider>(context, listen: false)
+    //             .currentLocation
+    //             .latitude ??
+    //         0,
+    //     Provider.of<LocationProvider>(context, listen: false)
+    //             .currentLocation
+    //             .longitude ??
+    //         0);
+
+    _loadData();
 
     // _deliveryBoyLatLng = LatLng(23.8513, 90.4133);
     // _addressLatLng = LatLng(19.228825, 72.854118);
@@ -60,20 +62,41 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     // _addressLatLng = widget.addressModel != null ? LatLng(double.parse(widget.addressModel.latitude), double.parse(widget.addressModel.longitude)) : LatLng(0,0);
     // _restaurantLatLng = LatLng(double.parse(coverage.latitude), double.parse(coverage.longitude));
 
-    // Provider.of<OrderProvider>(context, listen: false).refresh(context);
+
   }
-  // Future<void> requestPermission() async { await Permission.location.request(); }
+
+  _loadData(){
+    Provider.of<OrderProvider>(context, listen: false).refresh(context);
+    _deliveryBoyLatLng = LatLng(
+        Provider.of<LocationProvider>(context, listen: false)
+            .currentLocation
+            .latitude ??
+            0,
+        Provider.of<LocationProvider>(context, listen: false)
+            .currentLocation
+            .longitude ??
+            0);
+  }
 
   @override
   void dispose() {
     super.dispose();
-
+    _deliveryBoyLatLng = LatLng(
+        Provider.of<LocationProvider>(context, listen: false)
+            .currentLocation
+            .latitude ??
+            0,
+        Provider.of<LocationProvider>(context, listen: false)
+            .currentLocation
+            .longitude ??
+            0);
     _controller?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
+    // _loadData();
     return Container(
         height: _screenSize.height * 0.9,
         width: _screenSize.width,
@@ -91,7 +114,7 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
                   CameraPosition(target: _deliveryBoyLatLng, zoom: 18),
               zoomControlsEnabled: true,
               markers: _markers,
-              polylines: _polylines,
+              // polylines: _polylines,
               onMapCreated: (GoogleMapController controller) {
                 _controller = controller;
                 _isLoading = false;
@@ -132,25 +155,47 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     // Animate to coordinate
     LatLngBounds bounds;
     double _rotation = 0;
-    // if(_controller != null) {
-    //   if (_addressLatLng.latitude < _deliveryBoyLatLng.latitude) {
-    //     print("Less");
-    //   bounds = LatLngBounds(southwest: _addressLatLng, northeast: _deliveryBoyLatLng);
-    //   _rotation = 0;
-    //   }else {
-    //     print("More");
-    //     bounds = LatLngBounds(southwest: _deliveryBoyLatLng, northeast: _addressLatLng);
-    //     _rotation = 180;
-    //   }
-    // }
-    // LatLng centerBounds = LatLng(
-    //     (bounds.northeast.latitude + bounds.southwest.latitude)/2,
-    //     (bounds.northeast.longitude + bounds.southwest.longitude)/2
-    // );
-    //
-    // print(centerBounds.toString() + bounds.toString());
-    // _controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: centerBounds, zoom: 17)));
-    // zoomToFit(_controller, bounds, centerBounds);
+
+    // double right=double.minPositive, left=double.maxFinite;
+    LatLng left=LatLng(_deliveryBoyLatLng.latitude, _deliveryBoyLatLng.longitude);
+    LatLng right=LatLng(_deliveryBoyLatLng.latitude,_deliveryBoyLatLng.longitude);
+    List<OrderModel> orders = Provider.of<OrderProvider>(context, listen: false).currentOrders;
+    for(int i=0;i<orders.length;i++){
+      if(orders[i].deliveryAddress.latitude!=null) {
+        if (double.parse(orders[i].deliveryAddress.latitude) <
+            _deliveryBoyLatLng.latitude &&
+            double.parse(orders[i].deliveryAddress.latitude) < left.latitude) {
+          left = LatLng(double.parse(orders[i].deliveryAddress.latitude),
+              double.parse(orders[i].deliveryAddress.longitude));
+        } else if (double.parse(orders[i].deliveryAddress.latitude) >
+            _deliveryBoyLatLng.latitude &&
+            double.parse(orders[i].deliveryAddress.latitude) > right.latitude) {
+          right = LatLng(double.parse(orders[i].deliveryAddress.latitude),
+              double.parse(orders[i].deliveryAddress.longitude));
+        }
+      }
+    }
+    print("Delivery: ${_deliveryBoyLatLng.latitude},${_deliveryBoyLatLng.longitude}");
+    print("Left: ${left.latitude},${left.longitude}");
+    print("Right: ${right.latitude},${right.longitude}");
+
+    if(_controller != null) {
+      if (left.latitude < right.latitude) {
+      bounds = LatLngBounds(southwest: left, northeast: right);
+      _rotation = 0;
+      }else {
+        bounds = LatLngBounds(southwest: right, northeast: left);
+        _rotation = 180;
+      }
+    }
+    LatLng centerBounds = LatLng(
+        (bounds.northeast.latitude + bounds.southwest.latitude)/2,
+        (bounds.northeast.longitude + bounds.southwest.longitude)/2
+    );
+
+    print(centerBounds.toString() + bounds.toString());
+    _controller.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target: centerBounds, zoom: 17)));
+    zoomToFit(_controller, bounds, centerBounds);
     // _controller.getVisibleRegion().then((value) => print(value.toString()));
 
     // Marker
@@ -168,9 +213,10 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
 
     for (OrderModel order
         in Provider.of<OrderProvider>(context, listen: false).currentOrders) {
+      if(order.deliveryAddress.latitude!=null)
       _markers.add(Marker(
         markerId: MarkerId(order.id.toString()),
-        position: LatLng(double.parse(order.deliveryAddress.latitude),
+        position:  LatLng(double.parse(order.deliveryAddress.latitude),
             double.parse(order.deliveryAddress.longitude)),
         infoWindow: InfoWindow(
           title: order.customer.phone,
@@ -262,6 +308,7 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     bool keepZoomingOut = true;
     int i = 0;
     while (keepZoomingOut) {
+      print(i++);
       final LatLngBounds screenBounds = await controller.getVisibleRegion();
       if (fits(bounds, screenBounds)) {
         keepZoomingOut = false;

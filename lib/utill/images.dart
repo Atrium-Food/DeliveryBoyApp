@@ -17,8 +17,9 @@ class Images {
   static const String united_kindom = 'assets/image/united_kindom.png';
   static const String efood_bike_with_person =
       'assets/icon/efood_bike_with_person.png';
-  static const String kiwis_delivery_partner =
-      'assets/image/kiwis_delivery_partner.svg';
+  static const String kiwis_delivery_svg =
+      'assets/image/kiwis_delivery.svg';
+  static const String kiwis_delivery_partner = 'assets/image/kiwis_delivery_partner.png';
   static const String done = 'assets/icon/done.png';
   static const String log_out = 'assets/image/log_out.png';
   static const String placeholder_image = 'assets/image/placeholder_image.png';

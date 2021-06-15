@@ -56,6 +56,9 @@ class AddressBottomSheet extends StatelessWidget {
                       Container(
                         color: Theme.of(context).primaryColor,
                         width: _screenSize.width,
+                        constraints: BoxConstraints(
+                          maxHeight: _screenSize.height*0.6
+                        ),
                         child: RefreshIndicator(
                           child: orderProvider.currentOrders != null
                               ? orderProvider.currentOrders.length != 0
@@ -64,9 +67,9 @@ class AddressBottomSheet extends StatelessWidget {
                             itemCount:
                             orderProvider.currentOrders.length,
                             // controller: scrollController,
-                            physics: const BouncingScrollPhysics(
-                                parent:
-                                AlwaysScrollableScrollPhysics()),
+                            // physics: const BouncingScrollPhysics(
+                            //     parent:
+                            //     AlwaysScrollableScrollPhysics()),
                             itemBuilder: (context, index) =>
                                 OrderWidget(
                                   orderModel:

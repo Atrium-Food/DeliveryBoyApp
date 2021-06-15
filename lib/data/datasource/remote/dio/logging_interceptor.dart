@@ -6,6 +6,9 @@ class LoggingInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     print("--> ${options.method} ${options.path}");
+    if(options.method=="POST"){
+      print(options.data);
+    }
     print("Headers: ${options.headers.toString()}");
     print("<-- END HTTP");
 

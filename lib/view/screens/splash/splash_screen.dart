@@ -85,9 +85,9 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(Images.kiwis_delivery_partner, height: 165),
-            // SizedBox(height: 45),
-            // Image.asset(Images.efood, height: 33,color: Theme.of(context).primaryColor,),
+            SvgPicture.asset(Images.kiwis_delivery_svg, height: 165),
+            SizedBox(height: 45),
+            Image.asset(Images.kiwis_delivery_partner, height: 100,color: Theme.of(context).primaryColor,),
           ],
         ),
       ),
