@@ -118,6 +118,7 @@ class MyNotification {
 }
 
 Future<dynamic> myBackgroundMessageHandler(RemoteMessage message) async {
+  print(message.data);
   var androidInitialize =
       new AndroidInitializationSettings('notification_icon');
   var iOSInitialize = new IOSInitializationSettings();

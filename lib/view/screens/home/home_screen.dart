@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/location_provider.dart';
 import 'package:resturant_delivery_boy/provider/order_provider.dart';
@@ -179,7 +180,13 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, orderProvider, child) => Stack(
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TrackingMapWidget(),
+                  Consumer<LocationProvider>(
+                    builder: (context, locationProvider, child) {
+                      print("build map again");
+                      return TrackingMapWidget(deliveryLatLng: LatLng(locationProvider.currentLocation.latitude,locationProvider.currentLocation.longitude),
+                      orderList: orderProvider.currentOrders,);
+                    }
+                  ),
                   // AddressBottomSheet(),
                   // Expanded(
                   //   child: RefreshIndicator(

@@ -18,6 +18,9 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 class TrackingMapWidget extends StatefulWidget {
+  LatLng deliveryLatLng;
+  List<OrderModel> orderList;
+  TrackingMapWidget({@required this.deliveryLatLng, @required this.orderList});
   // TrackingMapWidget({@required this.deliveryManModel, @required this.orderID, @required this.addressModel});
 
   @override
@@ -30,8 +33,8 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
   Set<Marker> _markers = HashSet<Marker>();
   Set<Polyline> _polylines = HashSet<Polyline>();
   LatLng _deliveryBoyLatLng;
+  List<OrderModel> orderList;
   LatLng _addressLatLng;
-  // LatLng _restaurantLatLng;
 
   List<LatLng> polylineCoordinates = [];
 
@@ -40,6 +43,8 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
   void initState() {
     super.initState();
     // requestPermission();
+    _deliveryBoyLatLng = widget.deliveryLatLng;
+    orderList=widget.orderList;
 
     // RestaurantLocationCoverage coverage = Provider.of<SplashProvider>(context, listen: false).configModel.restaurantLocationCoverage;
     // _deliveryBoyLatLng = LatLng(
@@ -52,7 +57,7 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     //             .longitude ??
     //         0);
 
-    _loadData();
+    // _loadData();
 
     // _deliveryBoyLatLng = LatLng(23.8513, 90.4133);
     // _addressLatLng = LatLng(19.228825, 72.854118);
@@ -66,30 +71,21 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
   }
 
   _loadData(){
-    Provider.of<OrderProvider>(context, listen: false).refresh(context);
-    _deliveryBoyLatLng = LatLng(
-        Provider.of<LocationProvider>(context, listen: false)
-            .currentLocation
-            .latitude ??
-            0,
-        Provider.of<LocationProvider>(context, listen: false)
-            .currentLocation
-            .longitude ??
-            0);
+    // Provider.of<OrderProvider>(context, listen: false).refresh(context);
+    // _deliveryBoyLatLng = LatLng(
+    //     Provider.of<LocationProvider>(context, listen: false)
+    //         .currentLocation
+    //         .latitude ??
+    //         0,
+    //     Provider.of<LocationProvider>(context, listen: false)
+    //         .currentLocation
+    //         .longitude ??
+    //         0);
   }
 
   @override
   void dispose() {
     super.dispose();
-    _deliveryBoyLatLng = LatLng(
-        Provider.of<LocationProvider>(context, listen: false)
-            .currentLocation
-            .latitude ??
-            0,
-        Provider.of<LocationProvider>(context, listen: false)
-            .currentLocation
-            .longitude ??
-            0);
     _controller?.dispose();
   }
 
@@ -116,6 +112,7 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
               markers: _markers,
               // polylines: _polylines,
               onMapCreated: (GoogleMapController controller) {
+                print("Delivery boy in Map: $_deliveryBoyLatLng");
                 _controller = controller;
                 _isLoading = false;
                 setMarker();
@@ -308,7 +305,6 @@ class _TrackingMapWidgetState extends State<TrackingMapWidget> {
     bool keepZoomingOut = true;
     int i = 0;
     while (keepZoomingOut) {
-      print(i++);
       final LatLngBounds screenBounds = await controller.getVisibleRegion();
       if (fits(bounds, screenBounds)) {
         keepZoomingOut = false;

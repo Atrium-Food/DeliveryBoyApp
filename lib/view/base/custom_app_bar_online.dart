@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resturant_delivery_boy/localization/language_constrants.dart';
 import 'package:resturant_delivery_boy/provider/auth_provider.dart';
+import 'package:resturant_delivery_boy/provider/location_provider.dart';
 import 'package:resturant_delivery_boy/provider/order_provider.dart';
 import 'package:resturant_delivery_boy/provider/theme_provider.dart';
 import 'package:resturant_delivery_boy/utill/color_resources.dart';
@@ -82,13 +83,15 @@ class CustomOnlineAppBar extends StatelessWidget
       actions: [
         Consumer<OrderProvider>(
           builder: (context, orderProvider, child) =>
-              orderProvider.currentOrders.length > 0
-                  ? SizedBox.shrink()
-                  : IconButton(
+              // orderProvider.currentOrders.length > 0
+              //     ? SizedBox.shrink()
+              //     :
+    IconButton(
                       icon: Icon(Icons.refresh,
                           color: ColorResources.COLOR_PRIMARY),
                       onPressed: () {
                         orderProvider.refresh(context);
+                        Provider.of<LocationProvider>(context,listen: false).getUserLocation();
                       }),
         ),
         // IconButton(
