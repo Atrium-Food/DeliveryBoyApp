@@ -80,14 +80,18 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Color(0xfff8f6df),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(Images.kiwis_delivery_svg, height: 165),
             SizedBox(height: 45),
-            Image.asset(Images.kiwis_delivery_partner, height: 100,color: Theme.of(context).primaryColor,),
+            Image.asset(
+              Images.kiwis_delivery_partner,
+              height: 100,
+              color: Theme.of(context).primaryColor,
+            ),
           ],
         ),
       ),
